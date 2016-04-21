@@ -4,18 +4,14 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     // Use this for initialization
-
     [SerializeField]
     float playerspeed = 10f;
     [SerializeField]
     float jumpPower = 20f;
-
     [SerializeField]
     bool grounded = false;
-
     [SerializeField]
     Transform  groundedEnd;
-
     Rigidbody2D rb2d;
 
     void Start ()
