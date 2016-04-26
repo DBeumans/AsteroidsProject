@@ -37,6 +37,19 @@ public class MenuManager : MonoBehaviour {
         }      
 
     }
+    /*
+    public void ToggleScreen(bool value)
+    {
+        if(value)
+        {
+            Screen.fullScreen = Screen.fullScreen;
+        }
+        else
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+    }
+    */
 
     public void ChangeGraphics(int value)
     {
