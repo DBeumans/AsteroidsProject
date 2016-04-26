@@ -39,12 +39,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.Translate(Vector2.right * playerspeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 0);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.Translate(Vector2.right * playerspeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 180);
         }
 

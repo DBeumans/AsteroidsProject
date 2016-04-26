@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerLookCursor : MonoBehaviour
 {
-
     void Update()
     {
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
