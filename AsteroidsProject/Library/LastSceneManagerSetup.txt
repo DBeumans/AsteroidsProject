@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/MainMenuDanilo.unity
+=======
+- path: Assets/Scenes/DylanScene.unity
+>>>>>>> abda25cb7ba09c183131f6e55add3063b03fd1ca
   isLoaded: 1
   isActive: 1
