@@ -46,13 +46,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\CameraLock.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SpecialEnemyAI.cs" />
      <Compile Include="Assets\Scripts\Player\Bullit.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLookCursor.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
+     <Compile Include="Assets\Scripts\Player\_newTest\EnemyBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Player\_newTest\PlayerBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Player\_newTest\Spawning2.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUps.cs" />
      <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <Compile Include="Assets\Scripts\World\Spawning.cs" />
+     <Compile Include="Assets\Scripts\World\WorldBound.cs" />
+     <Compile Include="Assets\Scripts\World\_startGame.cs" />
      <None Include="Assets\Sprites\placeholder.txt" />
      <None Include="Assets\Scripts\UI\placeholder.txt" />
      <None Include="Assets\Scripts\placeholder.txt" />

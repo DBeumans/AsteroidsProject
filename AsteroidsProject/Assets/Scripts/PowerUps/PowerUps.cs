@@ -13,6 +13,7 @@ public class PowerUps : MonoBehaviour
 	{
 		if (other.tag == "Collectable") 
 		{
+			Debug.Log ("powerup");
 			Destroy (other.gameObject);
 		}
 	}
