@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
-{
+{   
     public Bullit projectile;
     public Transform muzzle;
     public float bullitSpeed = 20;
@@ -12,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButton(0) && Time.time > nextFire)
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
         {
             Shoot();
 

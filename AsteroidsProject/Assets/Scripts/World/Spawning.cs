@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spawning : MonoBehaviour {
+public class Spawning2 : MonoBehaviour {
 
     [SerializeField]
     Transform[] spawnPoints;

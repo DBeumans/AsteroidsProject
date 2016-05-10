@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraLock : MonoBehaviour {
+public class CameraLock: MonoBehaviour
+{
 
     public Transform target;
     public float smoothTime;
@@ -12,12 +13,17 @@ public class CameraLock : MonoBehaviour {
     void Start()
     {
         _offset = transform.position - target.position;
+        target = GameObject.FindGameObjectWithTag("CamTarget").transform;
     }
 
+    void Update()
+    {
+        target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameObject.Find("Player") != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             Vector3 targetposition = target.position + _offset;
             // transform.position = target.position + _offset; 

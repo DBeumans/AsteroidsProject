@@ -3,54 +3,98 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-    // Use this for initialization
     [SerializeField]
-    float playerspeed = 10f;
+    float MovementSpeed;
     [SerializeField]
-    float jumpPower = 20f;
-    [SerializeField]
-    bool grounded = false;
-    [SerializeField]
-    Transform  groundedEnd;
-    Rigidbody2D rb2d;
+    float turnSpeed;
 
-    void Start ()
+    PlayerMovement _player;
+    PlayerShooting _playershooting;
+
+    SpecialEnemyAI _enemy;
+
+    [SerializeField]
+    GameObject _camtar;
+
+    bool _takeover = false;
+    // Update is called once per frame
+    void Start()
     {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        
+        _enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
+        
+        _camtar.SetActive(true);
 
+        
+        _player = GetComponent<PlayerMovement>();
+        _player.enabled = true;
+
+        _playershooting = GetComponent<PlayerShooting>();
+    }
+	void FixedUpdate ()
+    {
+        MovementHandler();
+        Inputs();
+
+        
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    void MovementHandler()
     {
-        PlayerMovementHandler();
-        raycasting();
-	}
+        if(Input.GetKey(KeyCode.A)) // LINKS
+        {
+            transform.Rotate(new Vector3(0,0,turnSpeed) * Time.deltaTime);
 
-    void raycasting()
-    {
-        Debug.DrawLine(this.transform.position, groundedEnd.position, Color.green);
+        }
 
-        grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground"));
+        if (Input.GetKey(KeyCode.D)) // RECHTS
+        {
+            transform.Rotate(new Vector3(0,0, -turnSpeed) * Time.deltaTime);
 
+
+        }
+
+        if (Input.GetKey(KeyCode.W)) // UP
+        {
+            transform.Translate(Vector3.up * MovementSpeed * Time.deltaTime);
+
+        }
+
+        if (Input.GetKey(KeyCode.S)) // DOWN
+        {
+            transform.Translate(-Vector3.up * MovementSpeed * Time.deltaTime);
+
+        }
     }
 
-    void PlayerMovementHandler()
+    void Inputs()
     {
-        if(Input.GetKey(KeyCode.D))
+        if(_takeover && Input.GetKey(KeyCode.E))
         {
-            transform.Translate(Vector2.right * playerspeed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
+            
+            _enemy.Controlable = true;
+            _player.enabled = false;
+            _playershooting.enabled = false;
+            _camtar.SetActive(false);
+            Destroy(gameObject, 0.40f);
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector2.right * playerspeed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 180);
-        }
+    }
 
-        if(Input.GetKeyDown(KeyCode.Space) && grounded == true)
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy")
         {
-            rb2d.AddForce(Vector2.up * jumpPower);
+            Physics2D.IgnoreLayerCollision(9, 10);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpecialEnemy"))
+        {
+
+            Debug.Log("Press E to take over!");
+            _takeover = true;
         }
     }
 }
