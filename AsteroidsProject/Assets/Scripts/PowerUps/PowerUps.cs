@@ -6,15 +6,19 @@ public class PowerUps : MonoBehaviour
 
 	void Start ()
 	{
-		GameObject[] collectablesObjs = GameObject.FindGameObjectsWithTag ("Collectable");
+		//GameObject[] collectablesObjs = GameObject.FindGameObjectsWithTag ("Collectable");
 	}
 
-	void onTriggerEnter (Collider other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Collectable") 
+		if (other.CompareTag("Collectable")) 
 		{
+<<<<<<< HEAD
+            Debug.Log("Collectable");
+=======
 			Debug.Log ("powerup");
 			Destroy (other.gameObject);
+>>>>>>> origin/master
 		}
 	}
 }
