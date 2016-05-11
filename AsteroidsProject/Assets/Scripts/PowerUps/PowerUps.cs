@@ -13,12 +13,8 @@ public class PowerUps : MonoBehaviour
 	{
 		if (other.CompareTag("Collectable")) 
 		{
-<<<<<<< HEAD
-            Debug.Log("Collectable");
-=======
 			Debug.Log ("powerup");
 			Destroy (other.gameObject);
->>>>>>> origin/master
 		}
 	}
 }
