@@ -4,7 +4,9 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
-    float MovementSpeed;
+    float MovementSpeed = 7;
+    [SerializeField]
+    float SlamSpeed = 15;
     /*
     [SerializeField]
     float turnSpeed;
@@ -51,23 +53,36 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate ()
     {
         Inputs();
-        raycasting(); 
+         
 	}
 
+    void Update()
+    {
+        raycasting();
+    }
     void Inputs()
     {
         // MOVEMENT
+        // LEFT
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 0);
         }
+        //RIGHT
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 180);
         }
 
+        // Slam 
+        if(Input.GetKey(KeyCode.S) && grounded == false)
+        {
+            transform.Translate(Vector2.down * SlamSpeed * Time.deltaTime);
+        }
+
+        // JUMP && DOUBLE JUMP
         if (Input.GetKeyDown(KeyCode.W))
         {         
             if(grounded)
@@ -103,7 +118,7 @@ public class PlayerMovement : MonoBehaviour {
 
         grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground"));
         
-        Debug.Log(grounded);
+
 
     }
     void OnCollisionEnter2D(Collision2D other)

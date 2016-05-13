@@ -69,9 +69,6 @@
     <Compile Include="Assets\Scripts\Player\PlayerLookCursor.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
-    <Compile Include="Assets\Scripts\Player\_newTest\EnemyBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Player\_newTest\PlayerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Player\_newTest\Spawning2.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUps.cs" />
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\World\Spawning.cs" />
