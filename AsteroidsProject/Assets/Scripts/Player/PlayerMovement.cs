@@ -5,8 +5,12 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
     float MovementSpeed;
+    /*
     [SerializeField]
     float turnSpeed;
+    */
+    [SerializeField]
+    float jumpPower = 20f;
 
     PlayerMovement _player;
     PlayerShooting _playershooting;
@@ -16,60 +20,73 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     GameObject _camtar;
 
+    [SerializeField]
+    bool grounded = false;
+
+    [SerializeField]
+    Transform groundedEnd;
+
+    Rigidbody2D rb2d;
+
+    bool canDoubleJump = false;
+
     bool _takeover = false;
     // Update is called once per frame
     void Start()
     {
-        
-        _enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
-        
+        // Get component function.
+        GetComponent();
+
         _camtar.SetActive(true);
-
-        
-        _player = GetComponent<PlayerMovement>();
         _player.enabled = true;
+    }
 
+    void GetComponent()
+    {
         _playershooting = GetComponent<PlayerShooting>();
+        _player = GetComponent<PlayerMovement>();
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        //_enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
     }
-	void FixedUpdate ()
+    void FixedUpdate ()
     {
-        MovementHandler();
         Inputs();
-
-        
+        raycasting(); 
 	}
-
-    void MovementHandler()
-    {
-        if(Input.GetKey(KeyCode.A)) // LINKS
-        {
-            transform.Rotate(new Vector3(0,0,turnSpeed) * Time.deltaTime);
-
-        }
-
-        if (Input.GetKey(KeyCode.D)) // RECHTS
-        {
-            transform.Rotate(new Vector3(0,0, -turnSpeed) * Time.deltaTime);
-
-
-        }
-
-        if (Input.GetKey(KeyCode.W)) // UP
-        {
-            transform.Translate(Vector3.up * MovementSpeed * Time.deltaTime);
-
-        }
-
-        if (Input.GetKey(KeyCode.S)) // DOWN
-        {
-            transform.Translate(-Vector3.up * MovementSpeed * Time.deltaTime);
-
-        }
-    }
 
     void Inputs()
     {
-        if(_takeover && Input.GetKey(KeyCode.E))
+        // MOVEMENT
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.eulerAngles = new Vector2(0, 0);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.eulerAngles = new Vector2(0, 180);
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {         
+            if(grounded)
+            {
+                
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+                rb2d.AddForce(Vector2.up * jumpPower * 2);
+                canDoubleJump = true;
+            }
+            else if(canDoubleJump)
+            {
+                canDoubleJump = false;
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+                rb2d.AddForce(Vector2.up * jumpPower * 2);
+            }
+        }
+
+        // Ability
+        if (_takeover && Input.GetKey(KeyCode.E))
         {
             
             _enemy.Controlable = true;
@@ -80,6 +97,15 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    void raycasting()
+    {
+        Debug.DrawLine(this.transform.position, groundedEnd.position, Color.green);
+
+        grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground"));
+        
+        Debug.Log(grounded);
+
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy")
