@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour {
     PlayerShooting _playershooting;
 
     SpecialEnemyAI _enemy;
+    [SerializeField]
+    Transform Playertransform;
+    [SerializeField]
+    Transform TeleportTarget;
 
     [SerializeField]
     GameObject _camtar;
@@ -81,9 +85,20 @@ public class PlayerMovement : MonoBehaviour {
         {
             transform.Translate(Vector2.down * SlamSpeed * Time.deltaTime);
         }
+        
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Playertransform.transform.position += transform.position = new Vector3(0, 0,12f);
+
+        }
+        if (Input.GetKeyUp(KeyCode.RightShift))
+        {
+            Playertransform.transform.position += transform.position = new Vector3(0, 0, -12f);
+
+        }
 
         // JUMP && DOUBLE JUMP
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {         
             if(grounded)
             {
