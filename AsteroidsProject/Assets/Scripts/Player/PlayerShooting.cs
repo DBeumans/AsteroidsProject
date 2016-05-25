@@ -12,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+        if (Input.GetKey(KeyCode.Return) && Time.time > nextFire)
         {
             Shoot();
 

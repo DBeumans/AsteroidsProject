@@ -18,9 +18,15 @@ public class PlayerMovement : MonoBehaviour {
     PlayerShooting _playershooting;
 
     SpecialEnemyAI _enemy;
+    [SerializeField]
+    Transform Playertransform;
+    [SerializeField]
+    Transform TeleportTarget;
 
     [SerializeField]
     GameObject _camtar;
+
+    Animator anim;
 
     [SerializeField]
     bool grounded = false;
@@ -48,6 +54,7 @@ public class PlayerMovement : MonoBehaviour {
         _playershooting = GetComponent<PlayerShooting>();
         _player = GetComponent<PlayerMovement>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
         //_enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
     }
     void FixedUpdate ()
@@ -59,6 +66,22 @@ public class PlayerMovement : MonoBehaviour {
     void Update()
     {
         raycasting();
+        CallAnimations();
+    }
+    void CallAnimations()
+    {
+        if (Input.GetKeyUp(KeyCode.D) || (Input.GetKeyUp(KeyCode.A)))
+        {
+            anim.SetBool("IsRunning", false);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            anim.SetBool("IsRunning", true);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            anim.SetBool("IsRunning", true);
+        }
     }
     void Inputs()
     {
@@ -68,12 +91,15 @@ public class PlayerMovement : MonoBehaviour {
         {
             transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 0);
+            
         }
+        
         //RIGHT
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 180);
+            
         }
 
         // Slam 
@@ -81,9 +107,21 @@ public class PlayerMovement : MonoBehaviour {
         {
             transform.Translate(Vector2.down * SlamSpeed * Time.deltaTime);
         }
+        
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Playertransform.transform.position += transform.position = new Vector3(0, 0,12f);
+            anim.SetBool("IsRespawn", true);
+
+        }
+        if (Input.GetKeyUp(KeyCode.RightShift))
+        {
+            Playertransform.transform.position += transform.position = new Vector3(0, 0, -12f);
+
+        }
 
         // JUMP && DOUBLE JUMP
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {         
             if(grounded)
             {
