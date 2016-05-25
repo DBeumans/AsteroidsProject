@@ -3,35 +3,27 @@ using System.Collections;
 
 public class EnemyAi : MonoBehaviour {
 
-    private Transform GoAfter;
-    private float speed;
-    private Vector3 dir;
-    private float rot;
-
-
+    [SerializeField]
+    float MovementSpeed = 2;
+    [SerializeField]
+    Transform GroundedCheck;
 
     [SerializeField]
-    GameObject _camtar; // Camera Target
+    bool PlayerInSight;
+    [SerializeField]
+    bool grounded;
 
-    EnemyAi _enemy;
+    bool Left;
+    bool Right = true;
+    bool PlayerIsBehind;
 
-    float f_RotSpeed = 3.0f, f_MoveSpeed = 3.0f;
-
+    bool isFacingLeft;
+    bool isFacingRight;
 
     // Use this for initialization
     void Start()
     {
-        _camtar.SetActive(false);
-        _enemy = GetComponent<EnemyAi>();
-        _enemy.enabled = true;
-
-        speed = Random.Range(1f, 5f);
-
-        //GoAfter = GameObject.Find("GoAfterMe").GetComponent<Transform>();
-        GoAfter = GameObject.Find("Player").GetComponent<Transform>();
-
-        dir = GoAfter.position - transform.position;
-        rot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+        
     }
 
     // Update is called once per frame
@@ -42,9 +34,62 @@ public class EnemyAi : MonoBehaviour {
 
     void FixedUpdate()
     {
-            GoAfter = GameObject.Find("Player").GetComponent<Transform>();
-            transform.rotation = Quaternion.AngleAxis(rot, Vector3.forward);
-            transform.position = Vector3.MoveTowards(transform.position, GoAfter.position, Time.deltaTime * speed);
+        raycasting();
+        EnemyTransform();
+    }
+    void raycasting()
+    {
+        Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
 
+        grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground")); // Check ground
+    }
+
+    void EnemyTransform()
+    {
+
+        if(grounded)
+        {
+            if(Right)
+            {
+                
+                transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
+                transform.eulerAngles = new Vector2(0, 0);
+                isFacingRight = true;
+                isFacingLeft = false;
+
+            }
+            if(Left)
+            {
+                
+                transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
+                transform.eulerAngles = new Vector2(0, 180);
+                isFacingLeft = true;
+                isFacingRight = false;
+                
+            }
+            
+        }
+        
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("GoLeft"))
+        {
+            Left = true;
+            Right = false;
+            Debug.Log("Going Left");
+        }
+        if(other.gameObject.CompareTag("GoRight"))
+        {
+            Right = true;
+            Left = false;
+            Debug.Log("Going Right");
+        }
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+....
+        }
     }
 }
