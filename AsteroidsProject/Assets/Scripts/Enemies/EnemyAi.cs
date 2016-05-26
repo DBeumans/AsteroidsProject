@@ -27,10 +27,6 @@ public class EnemyAi : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
     void FixedUpdate()
     {
@@ -89,7 +85,7 @@ public class EnemyAi : MonoBehaviour {
 
         if(other.gameObject.CompareTag("Player"))
         {
-....
+
         }
     }
 }

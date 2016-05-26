@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
     <Compile Include="Assets\Scripts\Enemies\SpecialEnemyAI.cs" />
     <Compile Include="Assets\Scripts\Player\Bullit.cs" />
+    <Compile Include="Assets\Scripts\Player\DestroyGameObjectAfterSoundPlay.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLookCursor.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
