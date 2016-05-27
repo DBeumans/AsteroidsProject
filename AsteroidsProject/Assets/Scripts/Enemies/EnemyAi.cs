@@ -82,10 +82,9 @@ public class EnemyAi : MonoBehaviour {
             Left = false;
             Debug.Log("Going Right");
         }
-
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.tag == "Enemy")
         {
-
+            Physics2D.IgnoreLayerCollision(10, 10);
         }
     }
 }

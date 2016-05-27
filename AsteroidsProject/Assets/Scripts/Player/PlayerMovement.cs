@@ -7,12 +7,9 @@ public class PlayerMovement : MonoBehaviour {
     float MovementSpeed = 7;
     [SerializeField]
     float SlamSpeed = 15;
-    /*
-    [SerializeField]
-    float turnSpeed;
-    */
     [SerializeField]
     float jumpPower = 20f;
+    int teleportCounter;
 
     PlayerMovement _player;
     PlayerShooting _playershooting;
@@ -20,8 +17,6 @@ public class PlayerMovement : MonoBehaviour {
     SpecialEnemyAI _enemy;
     [SerializeField]
     Transform Playertransform;
-    [SerializeField]
-    Transform TeleportTarget;
 
     [SerializeField]
     GameObject _camtar;
@@ -39,16 +34,19 @@ public class PlayerMovement : MonoBehaviour {
     bool canDoubleJump = false;
 
     bool _takeover = false;
-    // Update is called once per frame
     void Start()
     {
         // Get component function.
         GetComponent();
+        SetValues();
 
         _camtar.SetActive(true);
         _player.enabled = true;
     }
-
+    void SetValues()
+    {
+        teleportCounter = teleportCounter + 1;
+    }
     void GetComponent()
     {
         _playershooting = GetComponent<PlayerShooting>();
@@ -82,6 +80,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetBool("IsRunning", true);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("IsJumping", true);
+            
+        }
     }
     void Inputs()
     {
@@ -108,15 +111,31 @@ public class PlayerMovement : MonoBehaviour {
             transform.Translate(Vector2.down * SlamSpeed * Time.deltaTime);
         }
         
-        if(Input.GetKeyUp(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.LeftShift))
         {
-            Playertransform.transform.position += transform.position = new Vector3(0, 0,12f);
-            anim.SetBool("IsRespawn", true);
+            if(teleportCounter == 1)
+            {
+                Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
+                teleportCounter++;
+            }
+            else
+            {
+                Debug.Log("Cant go any further!");
+            }
+            
 
         }
-        if (Input.GetKeyUp(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.RightShift))
         {
-            Playertransform.transform.position += transform.position = new Vector3(0, 0, -12f);
+            if (teleportCounter == 2)
+            {
+                Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
+                teleportCounter--;
+            }
+            else
+            {
+                Debug.Log("Cant go any further!");
+            }
 
         }
 
