@@ -5,13 +5,12 @@ public class Bullit : MonoBehaviour {
 
     [SerializeField]
     float speed;
-    // Use this for initialization
+
     void Start()
     {
         Destroy(gameObject, 0.40f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
@@ -25,9 +24,7 @@ public class Bullit : MonoBehaviour {
             Debug.Log("Enemy Hitted!");
             Destroy(other.gameObject);
             Destroy(gameObject);
-
         }
-
     }
 
     public void SetSpeed(float value)
