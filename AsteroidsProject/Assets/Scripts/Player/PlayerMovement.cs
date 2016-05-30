@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour {
     float jumpPower = 20f;
     int teleportCounter;
 
+    [SerializeField]
+    Transform TeleportTarget;
+
     PlayerMovement _player;
     PlayerShooting _playershooting;
 
@@ -184,6 +187,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             Physics2D.IgnoreLayerCollision(9, 10);
         }
+
+        if (other.gameObject.tag == "Teleport")
+        {
+            Playertransform.transform.position = TeleportTarget.transform.position;
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -194,5 +203,7 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Press E to take over!");
             _takeover = true;
         }
+
+
     }
 }

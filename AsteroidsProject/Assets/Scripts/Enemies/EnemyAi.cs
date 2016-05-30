@@ -46,8 +46,7 @@ public class EnemyAi : MonoBehaviour {
         if(grounded)
         {
             if(Right)
-            {
-                
+            {  
                 transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector2(0, 0);
                 isFacingRight = true;
