@@ -68,6 +68,19 @@ public class PlayerMovement : MonoBehaviour {
     {
         raycasting();
         CallAnimations();
+        CheckVariables();
+    }
+
+    void CheckVariables()
+    {
+        if(teleportCounter == 2)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player1");
+        }
+        if(teleportCounter == 1)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
     }
     void CallAnimations()
     {
@@ -119,13 +132,15 @@ public class PlayerMovement : MonoBehaviour {
             if(teleportCounter == 1)
             {
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
+                
                 teleportCounter++;
             }
             else
             {
                 Debug.Log("Cant go any further!");
+               
             }
-            
+     
 
         }
         if (Input.GetKey(KeyCode.RightShift))

@@ -9,11 +9,6 @@ public class EnemyAi : MonoBehaviour {
     Transform GroundedCheck;
 
     [SerializeField]
-    Transform FieldOfViewFront;
-    [SerializeField]
-    Transform FieldOfViewBack;
-
-    [SerializeField]
     bool PlayerInSight;
 
     bool PlayerIsBehind;
@@ -24,16 +19,12 @@ public class EnemyAi : MonoBehaviour {
     bool Left;
     bool Right = true;
 
-    bool FieldOfViewFrontBool;
-    bool FieldOfViewBackBool;
-
     bool isFacingLeft;
     bool isFacingRight;
 
-    void Update()
-    {
-        CheckPlayer();
-    }
+    float RandomNumber;
+
+
     void FixedUpdate()
     {
         raycasting();
@@ -42,12 +33,8 @@ public class EnemyAi : MonoBehaviour {
     void raycasting()
     {
         Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
-        Debug.DrawLine(this.transform.position, FieldOfViewFront.position, Color.red); 
-        Debug.DrawLine(this.transform.position, FieldOfViewBack.position, Color.blue); 
 
         grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground")); // Check ground
-        FieldOfViewFrontBool = Physics2D.Linecast(this.transform.position, FieldOfViewFront.position, 1 << LayerMask.NameToLayer("Player"));
-        FieldOfViewBackBool = Physics2D.Linecast(this.transform.position, FieldOfViewBack.position, 1 << LayerMask.NameToLayer("Player"));
     }
 
     void EnemyTransform()
@@ -77,55 +64,19 @@ public class EnemyAi : MonoBehaviour {
         
     }
 
-    void CheckPlayer()
+    void ChangeDirection()
     {
-        if(FieldOfViewFrontBool)
+        RandomNumber = Random.value;
+        if(RandomNumber >=0 && RandomNumber <= 0.5)
         {
-            ChasePlayer(true);
-            Debug.Log("Chasing The Player!");
-        }
-        if (FieldOfViewBackBool)
-        {
-            ChasePlayer(false);
-            Debug.Log("Enemy Flipped!");
-        }
-        
-        if (FieldOfViewFrontBool == false && FieldOfViewBackBool == false)
-        {
-            Debug.Log("Nothing! Both Are False!");
-        }
-
-    }
-
-    void FlipEnemy()
-    {
-        if(isFacingLeft)
-        {
-            transform.eulerAngles = new Vector2(0, 0);
-        }
-        if(isFacingRight)
-        {
-            transform.eulerAngles = new Vector2(0, 180);
-        }
-    }
-
-    void ChasePlayer(bool value)
-    {
-        if(value) // Rechts
-        {
+            Left = true;
             Right = false;
-            Left = false;
-            transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
         }
-        if(!value) // Links
+        if(RandomNumber >=0.5 && RandomNumber <= 1 )
         {
-            Right = false;
-            Left = false;
-            transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 180);
+            Right = true;
+            Left = true;
         }
-        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -134,13 +85,13 @@ public class EnemyAi : MonoBehaviour {
         {
             Left = true;
             Right = false;
-            Debug.Log("Going Left");
+            //Debug.Log("Going Left");
         }
         if(other.gameObject.CompareTag("GoRight"))
         {
             Right = true;
             Left = false;
-            Debug.Log("Going Right");
+            //Debug.Log("Going Right");
         }
         if (other.gameObject.tag == "Enemy")
         {
