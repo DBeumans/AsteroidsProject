@@ -3,26 +3,25 @@ using System.Collections;
 
 public class EnemyAi : MonoBehaviour {
 
+    // FLOATS
     [SerializeField]
     float MovementSpeed = 2;
+    float RandomNumber;
+    // TRANSFORMS
     [SerializeField]
     Transform GroundedCheck;
-
+    // BOOLEANS
     [SerializeField]
     bool PlayerInSight;
-
     bool PlayerIsBehind;
     [SerializeField]
-
     bool grounded;
-
     bool Left;
     bool Right = true;
-
     bool isFacingLeft;
     bool isFacingRight;
-
-    float RandomNumber;
+    // STRINGS
+    string layerString = "";
 
 
     void FixedUpdate()
@@ -34,7 +33,18 @@ public class EnemyAi : MonoBehaviour {
     {
         Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
 
-        grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground")); // Check ground
+      
+        
+
+        if(layerString == "Ground1")
+        {
+            grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground1")); // Check ground
+        }
+        if(layerString == "Ground")
+        {
+            grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground")); // Check ground
+        }
+        
     }
 
     void EnemyTransform()
@@ -81,6 +91,14 @@ public class EnemyAi : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.gameObject.tag == "Ground1")
+        {
+            layerString = "Ground1";
+        }
+        if(other.gameObject.tag == "Ground")
+        {
+            layerString = "Ground";
+        }
         if(other.gameObject.CompareTag("GoLeft"))
         {
             Left = true;

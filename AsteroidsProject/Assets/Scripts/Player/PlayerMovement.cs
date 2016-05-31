@@ -3,39 +3,34 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+    //FLOATS---------------------
     [SerializeField]
     float MovementSpeed = 7;
     [SerializeField]
     float SlamSpeed = 15;
     [SerializeField]
     float jumpPower = 20f;
+    // INT-----------------------
     int teleportCounter;
-
-    [SerializeField]
-    Transform TeleportTarget;
-
+    // SCRIPTS-------------------
     PlayerMovement _player;
     PlayerShooting _playershooting;
-
     SpecialEnemyAI _enemy;
+    // TRANSFORMS----------------
     [SerializeField]
     Transform Playertransform;
-
-    [SerializeField]
-    GameObject _camtar;
-
-    Animator anim;
-
-    [SerializeField]
-    bool grounded = false;
-
     [SerializeField]
     Transform groundedEnd;
-
+    //GAMEOBJECTS----------------
+    [SerializeField]
+    GameObject _camtar;
+    // COMPONENTS----------------
+    Animator anim;
     Rigidbody2D rb2d;
-
+    //BOOLEANS-------------------
+    [SerializeField]
+    bool grounded = false;
     bool canDoubleJump = false;
-
     bool _takeover = false;
     void Start()
     {
@@ -71,17 +66,43 @@ public class PlayerMovement : MonoBehaviour {
         CheckVariables();
     }
 
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+            {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
     void CheckVariables()
     {
         if(teleportCounter == 2)
         {
-            gameObject.layer = LayerMask.NameToLayer("Player1");
+           // gameObject.layer = LayerMask.NameToLayer("Player1");
+           SetLayerRecursively(this.gameObject, 13);
+           
+
         }
         if(teleportCounter == 1)
         {
-            gameObject.layer = LayerMask.NameToLayer("Player");
+            // gameObject.layer = LayerMask.NameToLayer("Player");
+            SetLayerRecursively(this.gameObject, 9);
+            
+
         }
     }
+
     void CallAnimations()
     {
         if (Input.GetKeyUp(KeyCode.D) || (Input.GetKeyUp(KeyCode.A)))
@@ -131,14 +152,15 @@ public class PlayerMovement : MonoBehaviour {
         {
             if(teleportCounter == 1)
             {
-                Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
                 
+                Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
                 teleportCounter++;
             }
             else
             {
                 Debug.Log("Cant go any further!");
-               
+                
+
             }
      
 
@@ -147,12 +169,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (teleportCounter == 2)
             {
+                
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
                 teleportCounter--;
             }
             else
             {
                 Debug.Log("Cant go any further!");
+                
             }
 
         }
@@ -191,7 +215,16 @@ public class PlayerMovement : MonoBehaviour {
     {
         Debug.DrawLine(this.transform.position, groundedEnd.position, Color.green);
 
-        grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground"));
+        
+
+        if(this.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground"));
+        }
+        if(this.gameObject.layer == LayerMask.NameToLayer("Player1"))
+        {
+            grounded = Physics2D.Linecast(this.transform.position, groundedEnd.position, 1 << LayerMask.NameToLayer("Ground1"));
+        }
         
 
 
@@ -201,11 +234,6 @@ public class PlayerMovement : MonoBehaviour {
         if(other.gameObject.tag == "Enemy")
         {
             Physics2D.IgnoreLayerCollision(9, 10);
-        }
-
-        if (other.gameObject.tag == "Teleport")
-        {
-            Playertransform.transform.position = TeleportTarget.transform.position;
         }
 
     }
