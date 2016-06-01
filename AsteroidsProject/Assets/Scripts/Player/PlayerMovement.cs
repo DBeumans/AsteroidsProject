@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour {
     bool canDoubleJump = false;
 
     bool _takeover = false;
+
+
     void Start()
     {
         // Get component function.
