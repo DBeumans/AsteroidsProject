@@ -6,24 +6,40 @@ public class Bullit : MonoBehaviour {
     [SerializeField]
     float speed;
 
+    PlayerMovement player;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         Destroy(gameObject, 0.40f);
     }
 
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+        if(player.teleportCounter == 1)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("Bullit");
+        }
+        if(player.teleportCounter == 2)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("Bullit1");
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+ 
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy Hitted!");
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+        if(other.gameObject.tag == "Ground")
+        {
+            Debug.Log("GROUND HITTED!");
         }
     }
 

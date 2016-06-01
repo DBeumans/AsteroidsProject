@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     float jumpPower = 20f;
     // INT-----------------------
-    int teleportCounter;
+    public int teleportCounter;
     // SCRIPTS-------------------
     PlayerMovement _player;
     PlayerShooting _playershooting;

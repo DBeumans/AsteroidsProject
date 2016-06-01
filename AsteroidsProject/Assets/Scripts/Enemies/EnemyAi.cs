@@ -20,8 +20,7 @@ public class EnemyAi : MonoBehaviour {
     bool Right = true;
     bool isFacingLeft;
     bool isFacingRight;
-    // STRINGS
-    string layerString = "";
+
 
 
     void FixedUpdate()
@@ -33,14 +32,15 @@ public class EnemyAi : MonoBehaviour {
     {
         Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
 
-      
-        
 
-        if(layerString == "Ground1")
+
+
+        if (this.gameObject.layer == LayerMask.NameToLayer("Enemy1"))
         {
             grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground1")); // Check ground
         }
-        if(layerString == "Ground")
+
+        if (this.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             grounded = Physics2D.Linecast(this.transform.position, GroundedCheck.position, 1 << LayerMask.NameToLayer("Ground")); // Check ground
         }
@@ -91,14 +91,6 @@ public class EnemyAi : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Ground1")
-        {
-            layerString = "Ground1";
-        }
-        if(other.gameObject.tag == "Ground")
-        {
-            layerString = "Ground";
-        }
         if(other.gameObject.CompareTag("GoLeft"))
         {
             Left = true;
