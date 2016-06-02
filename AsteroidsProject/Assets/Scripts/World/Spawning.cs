@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spawning2 : MonoBehaviour {
+public class Spawning : MonoBehaviour {
 
     [SerializeField]
     Transform[] spawnPoints;
@@ -14,13 +14,6 @@ public class Spawning2 : MonoBehaviour {
     {
         InvokeRepeating("Spawn", SpawnTime, SpawnTime);
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
-
     void Spawn()
     {
 
