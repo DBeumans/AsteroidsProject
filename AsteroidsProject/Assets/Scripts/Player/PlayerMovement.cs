@@ -57,15 +57,16 @@ public class PlayerMovement : MonoBehaviour {
     }
     void FixedUpdate ()
     {
+
         Inputs();
-         
-	}
+    }
 
     void Update()
     {
         raycasting();
         CallAnimations();
         CheckVariables();
+        
     }
 
     void SetLayerRecursively(GameObject obj, int newLayer)

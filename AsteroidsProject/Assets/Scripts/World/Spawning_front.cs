@@ -1,36 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spawning_front : MonoBehaviour {
+public class Spawning_front : MonoBehaviour
+{
 
     [SerializeField]
     Transform[] spawnPoints;
     [SerializeField]
     GameObject enemy;
     [SerializeField]
-    float SpawnTime = 0.01f;
 
-    bool EnableSpawn = false;
+    float time = 0f;
+    [SerializeField]
+    float timestop = 96f;
 
-    PlayerMovement player;
+    public bool EnableSpawn = false;
+
+    bool AbleSpawn;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        if(EnableSpawn)
-        {
-            InvokeRepeating("Spawn", SpawnTime, SpawnTime);
-        }
+
     }
     void Update()
     {
-        if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (EnableSpawn)
         {
-            EnableSpawn = true;
+            AbleSpawn2(true);
         }
-        if(player.gameObject.layer != LayerMask.NameToLayer("Player"))
+    }
+
+    void AbleSpawn2(bool value)
+    {
+        if (value)
         {
-            EnableSpawn = false;
+            time++;
+            if (time >= timestop)
+            {
+                Spawn();
+                time = 0f;
+            }
+
         }
     }
     void Spawn()
