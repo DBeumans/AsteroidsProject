@@ -9,6 +9,11 @@ public class CameraLock: MonoBehaviour
 
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _offset;
+
+    [SerializeField]
+    float shaketimer;
+    [SerializeField]
+    float shakeamount;
     // Use this for initialization
     void Start()
     {
@@ -19,6 +24,15 @@ public class CameraLock: MonoBehaviour
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("CamTarget").transform;
+
+        if(shaketimer >= 0)
+        {
+            Vector2 ShakePosition = Random.insideUnitCircle * shakeamount;
+
+            transform.position = new Vector3(transform.position.x + ShakePosition.x, transform.position.y + ShakePosition.y, transform.position.z);
+
+            shaketimer -= Time.deltaTime;
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -36,5 +50,11 @@ public class CameraLock: MonoBehaviour
 
         }
 
+    }
+
+    public void ShakeCamera(float shakePower, float shakeDuration)
+    {
+        shakeamount = shakePower;
+        shaketimer = shakeDuration;
     }
 }

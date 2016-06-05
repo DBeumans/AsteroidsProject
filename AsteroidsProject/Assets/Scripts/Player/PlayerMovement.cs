@@ -58,11 +58,12 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate ()
     {
 
-        Inputs();
+        
     }
 
     void Update()
     {
+        Inputs();
         raycasting();
         CallAnimations();
         CheckVariables();

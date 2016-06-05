@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -80,8 +74,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraLock.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Enemies\SpecialEnemyAI.cs" />
     <Compile Include="Assets\Scripts\Player\Bullit.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLookCursor.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
@@ -89,8 +85,10 @@
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\World\CheckSpawningCollision.cs" />
     <Compile Include="Assets\Scripts\World\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\World\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\World\Spawning_back.cs" />
     <Compile Include="Assets\Scripts\World\Spawning_front.cs" />
+    <Compile Include="Assets\Scripts\World\WaveManager.cs" />
     <Compile Include="Assets\Scripts\World\WorldBound.cs" />
     <Compile Include="Assets\Scripts\World\_startGame.cs" />
   </ItemGroup>

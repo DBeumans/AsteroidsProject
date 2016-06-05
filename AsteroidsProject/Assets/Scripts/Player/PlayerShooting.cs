@@ -15,8 +15,11 @@ public class PlayerShooting : MonoBehaviour
     private float fireRate = 0.1f;
     public float nextFire = 0.0f;
 
+    CameraLock cameraLock;
+
 	void Start()
 	{
+        cameraLock = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraLock>();
 		source = GetComponent<AudioSource> ();
 	}
 
@@ -26,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) && Time.time > nextFire)
         {
             Shoot();
+            cameraLock.ShakeCamera(0.1f, 0.2f);
 
         }
 

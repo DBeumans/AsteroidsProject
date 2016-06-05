@@ -7,6 +7,11 @@ public class EnemyAi : MonoBehaviour {
     [SerializeField]
     float MovementSpeed = 2;
     float RandomNumber;
+
+    float SendScore = 2;
+
+    [SerializeField]
+    float thrust = 100;
     // TRANSFORMS
     [SerializeField]
     Transform GroundedCheck;
@@ -21,8 +26,27 @@ public class EnemyAi : MonoBehaviour {
     bool isFacingLeft;
     bool isFacingRight;
 
+    ScoreHandler _ScoreHandler;
 
+    Rigidbody2D rb2d;
 
+    void Start()
+    {
+        
+        _ScoreHandler = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreHandler>();
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
+    void Update()
+    {
+        if(!grounded)
+        {
+            rb2d.gravityScale = 20;
+        }
+        if(grounded)
+        {
+            rb2d.gravityScale = 1;
+        }
+    }
     void FixedUpdate()
     {
         raycasting();
@@ -106,6 +130,24 @@ public class EnemyAi : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             Physics2D.IgnoreLayerCollision(10, 10);
+        }
+
+        if(other.gameObject.tag == "Bullet")
+        {
+            _ScoreHandler.RecieveScore(SendScore);
+            MovementSpeed = 1;
+            
+            if(grounded)
+            {
+                
+                rb2d.AddForce(Vector2.up * thrust);
+                
+            }
+            
+        }
+        if(other.gameObject.tag != "Bullet")
+        {
+            MovementSpeed = 2;
         }
 
     }

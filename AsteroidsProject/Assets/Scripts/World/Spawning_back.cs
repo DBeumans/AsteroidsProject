@@ -10,22 +10,31 @@ public class Spawning_back : MonoBehaviour {
     [SerializeField]
 
     float time = 0f;
+    float timestop;
     [SerializeField]
-    float timestop = 96f;
-
+    float Seconds = 1f;
+    WaveManager _levelManager;
     public bool EnableSpawn = false;
 
     bool AbleSpawn;
     // Use this for initialization
     void Start()
     {
-
+        timestop = 24 * Seconds + 1f;
+        _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<WaveManager>();
     }
     void Update()
     {
-        if (EnableSpawn)
+        if (!_levelManager.WaveCap)
         {
-            AbleSpawn2(true);
+            if (EnableSpawn)
+            {
+                AbleSpawn2(true);
+            }
+        }
+        else
+        {
+           
         }
     }
 
@@ -50,5 +59,6 @@ public class Spawning_back : MonoBehaviour {
 
         // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
         Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        _levelManager.spawnAbleEnemies--;
     }
 }

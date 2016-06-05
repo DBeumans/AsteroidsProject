@@ -11,8 +11,11 @@ public class Spawning_front : MonoBehaviour
     [SerializeField]
 
     float time = 0f;
+    float timestop;
     [SerializeField]
-    float timestop = 96f;
+    float Seconds = 1;
+
+    WaveManager _levelManager;
 
     public bool EnableSpawn = false;
 
@@ -20,14 +23,23 @@ public class Spawning_front : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        timestop = 24 * Seconds + 1f;
+        _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<WaveManager>();
     }
     void Update()
     {
-        if (EnableSpawn)
+        if(!_levelManager.WaveCap)
         {
-            AbleSpawn2(true);
+            if (EnableSpawn)
+            {
+                AbleSpawn2(true);
+            }
         }
+        else
+        {
+            
+        }
+        
     }
 
     void AbleSpawn2(bool value)
@@ -51,5 +63,7 @@ public class Spawning_front : MonoBehaviour
 
         // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
         Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        _levelManager.spawnAbleEnemies--;
+        
     }
 }
