@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     bool PauzeEnabled = false;
 
-
     [SerializeField]
     Text WaveText;
     public Text ScoreText;
@@ -62,8 +61,6 @@ public class LevelManager : MonoBehaviour {
         WaveText.text = "Wave: " + _wavemanager.waveCounter.ToString();
 
     }
-
-
 
     public void PauzeScreenEnabled()
     {

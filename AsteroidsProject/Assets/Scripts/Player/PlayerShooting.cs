@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {   
-    public Bullit projectile;
+    public Bullet projectile;
     public Transform muzzle;
     public float bullitSpeed = 20;
 
@@ -29,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) && Time.time > nextFire)
         {
             Shoot();
-            cameraLock.ShakeCamera(0.1f, 0.2f);
+            cameraLock.ShakeCamera(0.05f, 0.1f);
 
         }
 
@@ -38,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot()
     {
         nextFire = Time.time + fireRate;
-        Bullit newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Bullit;
+        Bullet newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Bullet;
         newProjectile.SetSpeed(bullitSpeed);
 
 		source.PlayOneShot (gunSound, 1f);

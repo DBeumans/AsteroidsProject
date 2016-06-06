@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Cant go any further!");
+                //Debug.Log("Cant go any further!");
                 
 
             }

@@ -11,6 +11,12 @@ public class WaveManager : MonoBehaviour {
     [SerializeField]
     int MaxEnemies = 10000;
 
+    float TimeTillNextWaveDefaulValue;
+    [SerializeField]
+    float TimeTillNextWave;
+    [SerializeField]
+    int SecondsTillNextWave;
+
     GameObject[] EnemyObjecten;
 
     public bool WaveCap;
@@ -22,7 +28,11 @@ public class WaveManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spawnAbleEnemies += DefaultSpawnAbleEnemies;
-	}
+
+        TimeTillNextWave = 24f * SecondsTillNextWave + 12f;
+        TimeTillNextWaveDefaulValue = 24f * SecondsTillNextWave + 12f;
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -40,10 +50,20 @@ public class WaveManager : MonoBehaviour {
         stopSpawn = false;
         WaveCap = false;
         waveCounter++;
+        TimeTillNextWave = TimeTillNextWaveDefaulValue;
         DefaultSpawnAbleEnemies += 2;
         spawnAbleEnemies += DefaultSpawnAbleEnemies + DefaultSpawnAbleEnemies/2;
         
         
+    }
+
+    void CountDownt()
+    {
+        TimeTillNextWave--;
+        if(TimeTillNextWave <= 0)
+        {
+            Reset();
+        }
     }
     void CheckEnemiesInScene()
     {
@@ -56,7 +76,7 @@ public class WaveManager : MonoBehaviour {
         if (CurrentEnemies == 0 && spawnAbleEnemies == 0)
         {
 
-            Reset();
+            CountDownt();
         }
 
 

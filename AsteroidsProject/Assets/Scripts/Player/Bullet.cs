@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullit : MonoBehaviour {
+public class Bullet : MonoBehaviour {
 
     [SerializeField]
     float speed;
+
+    public float DestoryTimer = 0.40f;
 
     PlayerMovement player;
 
@@ -15,7 +17,7 @@ public class Bullit : MonoBehaviour {
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        Destroy(gameObject, 0.40f);
+        Destroy(gameObject, DestoryTimer);
     }
 
     void Update()

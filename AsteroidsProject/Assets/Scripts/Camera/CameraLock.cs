@@ -10,6 +10,8 @@ public class CameraLock: MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _offset;
 
+
+
     [SerializeField]
     float shaketimer;
     [SerializeField]

@@ -8,14 +8,8 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     float MaxHealth = 100f;
 
-    [SerializeField]
-    float GetDamage = 20;
-
-	// Use this for initialization
-	void Start ()
-    {
-	    
-	}
+    
+    public float GetDamage = 20;
 	
 	// Update is called once per frame
 	void Update ()
