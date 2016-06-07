@@ -96,31 +96,22 @@ public class EnemyAi : MonoBehaviour {
         
     }
 
-    void ChangeDirection()
+    public void ChangeDirection()
     {
-        RandomNumber = Random.value;
-        if(RandomNumber >=0 && RandomNumber <= 0.5)
+        if(!isFacingLeft)
         {
-            Left = true;
-            Right = false;
+            transform.Translate(Vector2.right * 4 * Time.deltaTime);
         }
-        if(RandomNumber >=0.5 && RandomNumber <= 1 )
+        if(!isFacingRight)
         {
-            Right = true;
-            Left = true;
-        }
-    }
-
-    public void Direction(bool value)
-    {
-        if(value)
-        {
-            
+            transform.Translate(Vector2.right * 4 * Time.deltaTime);
         }
         else
         {
-
+            
+            transform.eulerAngles = new Vector2(0, 180);
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
