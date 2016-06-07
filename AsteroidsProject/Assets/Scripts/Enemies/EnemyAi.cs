@@ -22,10 +22,10 @@ public class EnemyAi : MonoBehaviour {
 
     [SerializeField]
     bool grounded;
-    bool Left;
-    bool Right = true;
-    bool isFacingLeft;
-    bool isFacingRight;
+    public bool Left;
+    public bool Right = true;
+    public bool isFacingLeft;
+    public bool isFacingRight;
 
     ScoreHandler _ScoreHandler;
 
@@ -47,6 +47,8 @@ public class EnemyAi : MonoBehaviour {
         {
             rb2d.gravityScale = 1;
         }
+
+        
     }
     void FixedUpdate()
     {
@@ -69,49 +71,56 @@ public class EnemyAi : MonoBehaviour {
         
     }
 
-    void EnemyTransform()
+    public void Flip(bool value)
+    {
+        if(value)
+        {
+            if (isFacingLeft)
+            {
+                transform.eulerAngles = new Vector2(0, 0);
+                Right = false;
+                Left = true;
+                
+            }
+            if (isFacingRight)
+            {
+                transform.eulerAngles = new Vector2(0, 180);
+                Left = false;
+                Right = true;
+                
+            }
+        }
+        else
+        {
+            
+        }
+    }
+
+    public void EnemyTransform()
     {
 
-        if(grounded)
+        if (grounded)
         {
-            if(Right)
-            {  
+            if (Right)
+            {
                 transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector2(0, 0);
                 isFacingRight = true;
                 isFacingLeft = false;
 
             }
-            if(Left)
+            if (Left)
             {
-                
+
                 transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector2(0, 180);
                 isFacingLeft = true;
                 isFacingRight = false;
-                
-            }
-            
-        }
-        
-    }
 
-    public void ChangeDirection()
-    {
-        if(!isFacingLeft)
-        {
-            transform.Translate(Vector2.right * 4 * Time.deltaTime);
+            }
+
         }
-        if(!isFacingRight)
-        {
-            transform.Translate(Vector2.right * 4 * Time.deltaTime);
-        }
-        else
-        {
-            
-            transform.eulerAngles = new Vector2(0, 180);
-        }
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -150,6 +159,8 @@ public class EnemyAi : MonoBehaviour {
         {
             MovementSpeed = 2;
         }
+
+        
 
     }
 }
