@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 
-    [SerializeField]
-    float CurrentHealth;
+    
+    public float CurrentHealth;
     [SerializeField]
     float MaxHealth;
 

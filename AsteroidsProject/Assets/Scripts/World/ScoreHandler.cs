@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScoreHandler : MonoBehaviour {
 
-    float Score;
+    public float Score;
     LevelManager _LevelManager;
 
     void Start()

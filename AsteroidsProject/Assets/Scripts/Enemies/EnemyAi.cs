@@ -19,6 +19,7 @@ public class EnemyAi : MonoBehaviour {
     [SerializeField]
     bool PlayerInSight;
     bool PlayerIsBehind;
+
     [SerializeField]
     bool grounded;
     bool Left;
@@ -55,9 +56,6 @@ public class EnemyAi : MonoBehaviour {
     void raycasting()
     {
         Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
-
-
-
 
         if (this.gameObject.layer == LayerMask.NameToLayer("Enemy1"))
         {
@@ -110,6 +108,18 @@ public class EnemyAi : MonoBehaviour {
         {
             Right = true;
             Left = true;
+        }
+    }
+
+    public void Direction(bool value)
+    {
+        if(value)
+        {
+            
+        }
+        else
+        {
+
         }
     }
 
