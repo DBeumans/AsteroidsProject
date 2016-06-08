@@ -19,12 +19,13 @@ public class EnemyAi : MonoBehaviour {
     [SerializeField]
     bool PlayerInSight;
     bool PlayerIsBehind;
+
     [SerializeField]
     bool grounded;
-    bool Left;
-    bool Right = true;
-    bool isFacingLeft;
-    bool isFacingRight;
+    public bool Left;
+    public bool Right = true;
+    public bool isFacingLeft;
+    public bool isFacingRight;
 
     ScoreHandler _ScoreHandler;
 
@@ -46,6 +47,8 @@ public class EnemyAi : MonoBehaviour {
         {
             rb2d.gravityScale = 1;
         }
+
+        
     }
     void FixedUpdate()
     {
@@ -55,9 +58,6 @@ public class EnemyAi : MonoBehaviour {
     void raycasting()
     {
         Debug.DrawLine(this.transform.position, GroundedCheck.position, Color.green); // Check ground
-
-
-
 
         if (this.gameObject.layer == LayerMask.NameToLayer("Enemy1"))
         {
@@ -71,46 +71,56 @@ public class EnemyAi : MonoBehaviour {
         
     }
 
-    void EnemyTransform()
+    public void Flip(bool value)
+    {
+        if(value)
+        {
+            if (isFacingLeft)
+            {
+                transform.eulerAngles = new Vector2(0, 0);
+                Right = false;
+                Left = true;
+                
+            }
+            if (isFacingRight)
+            {
+                transform.eulerAngles = new Vector2(0, 180);
+                Left = false;
+                Right = true;
+                
+            }
+        }
+        else
+        {
+            
+        }
+    }
+
+    public void EnemyTransform()
     {
 
-        if(grounded)
+        if (grounded)
         {
-            if(Right)
-            {  
+            if (Right)
+            {
                 transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector2(0, 0);
                 isFacingRight = true;
                 isFacingLeft = false;
 
             }
-            if(Left)
+            if (Left)
             {
-                
+
                 transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector2(0, 180);
                 isFacingLeft = true;
                 isFacingRight = false;
-                
-            }
-            
-        }
-        
-    }
 
-    void ChangeDirection()
-    {
-        RandomNumber = Random.value;
-        if(RandomNumber >=0 && RandomNumber <= 0.5)
-        {
-            Left = true;
-            Right = false;
+            }
+
         }
-        if(RandomNumber >=0.5 && RandomNumber <= 1 )
-        {
-            Right = true;
-            Left = true;
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -149,6 +159,8 @@ public class EnemyAi : MonoBehaviour {
         {
             MovementSpeed = 2;
         }
+
+        
 
     }
 }

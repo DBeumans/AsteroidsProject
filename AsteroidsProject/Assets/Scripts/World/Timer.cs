@@ -7,8 +7,8 @@ public class Timer : MonoBehaviour {
     [SerializeField]
     Text TimerText;
 
-    [SerializeField]
-    float seconds, minutes;
+    
+    public float seconds, minutes;
 
 	// Use this for initialization
 	void Start ()
