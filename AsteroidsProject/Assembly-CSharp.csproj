@@ -45,18 +45,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Bullet.cs" />
-     <Compile Include="Assets\GunSound.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraLock.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\SpecialEnemyAI.cs" />
-     <Compile Include="Assets\Scripts\Player\Bullit.cs" />
+     <Compile Include="Assets\Scripts\Player\Bullet.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLookCursor.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUps.cs" />
      <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
-     <Compile Include="Assets\Scripts\World\Spawning.cs" />
+     <Compile Include="Assets\Scripts\World\CheckSpawningCollision.cs" />
+     <Compile Include="Assets\Scripts\World\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\World\ScoreHandler.cs" />
+     <Compile Include="Assets\Scripts\World\ShopManager.cs" />
+     <Compile Include="Assets\Scripts\World\Spawning_back.cs" />
+     <Compile Include="Assets\Scripts\World\Spawning_front.cs" />
+     <Compile Include="Assets\Scripts\World\Timer.cs" />
+     <Compile Include="Assets\Scripts\World\WaveManager.cs" />
      <Compile Include="Assets\Scripts\World\WorldBound.cs" />
      <Compile Include="Assets\Scripts\World\_startGame.cs" />
      <None Include="Assets\Sprites\placeholder.txt" />
