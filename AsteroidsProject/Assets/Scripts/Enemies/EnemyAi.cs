@@ -4,8 +4,8 @@ using System.Collections;
 public class EnemyAi : MonoBehaviour {
 
     // FLOATS
-    [SerializeField]
-    float MovementSpeed = 2;
+    
+    public float MovementSpeed = 2;
     float RandomNumber;
 
     float SendScore = 2;
@@ -26,20 +26,37 @@ public class EnemyAi : MonoBehaviour {
     public bool Right = true;
     public bool isFacingLeft;
     public bool isFacingRight;
+    public bool ChasePlayer;
+
+    public bool isWalking;
+    public bool isAttacking;
 
     ScoreHandler _ScoreHandler;
-
+    Animator _anim;
     Rigidbody2D rb2d;
 
     void Start()
     {
-        
+        _anim = GetComponent<Animator>();
         _ScoreHandler = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreHandler>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
+
+    void AnimCheck()
+    {
+        if(isWalking)
+        {
+            _anim.SetBool("isWalking", true);
+        }
+        if(isAttacking)
+        {
+            _anim.SetBool("isAttacking", true);
+        }
+    }
     void Update()
     {
-        if(!grounded)
+        AnimCheck();
+        if (!grounded)
         {
             rb2d.gravityScale = 20;
         }
@@ -47,8 +64,9 @@ public class EnemyAi : MonoBehaviour {
         {
             rb2d.gravityScale = 1;
         }
+        chase();
 
-        
+
     }
     void FixedUpdate()
     {
@@ -71,29 +89,17 @@ public class EnemyAi : MonoBehaviour {
         
     }
 
-    public void Flip(bool value)
+    public void chase()
     {
-        if(value)
+        if (ChasePlayer)
         {
-            if (isFacingLeft)
-            {
-                transform.eulerAngles = new Vector2(0, 0);
-                Right = false;
-                Left = true;
-                
-            }
-            if (isFacingRight)
-            {
-                transform.eulerAngles = new Vector2(0, 180);
-                Left = false;
-                Right = true;
-                
-            }
+            MovementSpeed = 0;
         }
-        else
+        if(!ChasePlayer)
         {
-            
+            MovementSpeed = 2;
         }
+
     }
 
     public void EnemyTransform()
@@ -119,24 +125,25 @@ public class EnemyAi : MonoBehaviour {
 
             }
 
+            if(isFacingLeft)
+            {
+                Left = true;
+                Right = false;
+            }
+            if(isFacingRight)
+            {
+                Right = true;
+                Left = false;
+            }
+
         }
 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("GoLeft"))
-        {
-            Left = true;
-            Right = false;
-            //Debug.Log("Going Left");
-        }
-        if(other.gameObject.CompareTag("GoRight"))
-        {
-            Right = true;
-            Left = false;
-            //Debug.Log("Going Right");
-        }
+        
+
         if (other.gameObject.tag == "Enemy")
         {
             Physics2D.IgnoreLayerCollision(10, 10);

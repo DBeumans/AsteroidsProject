@@ -31,7 +31,7 @@ public class CheckCollision : MonoBehaviour {
     }
 
 
-    void Respawn()
+    public void Respawn()
     {
         _save.SaveFile();
     }

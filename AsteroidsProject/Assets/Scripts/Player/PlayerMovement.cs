@@ -55,12 +55,6 @@ public class PlayerMovement : MonoBehaviour {
         anim = gameObject.GetComponent<Animator>();
         //_enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
     }
-    void FixedUpdate ()
-    {
-
-        
-    }
-
     void Update()
     {
         Inputs();
