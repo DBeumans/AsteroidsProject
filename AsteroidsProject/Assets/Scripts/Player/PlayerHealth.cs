@@ -4,7 +4,9 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
     CheckCollision _checkCol;
-    
+
+    public float lives;
+
     public float CurrentHealth;
     [SerializeField]
     float MaxHealth;
@@ -21,9 +23,9 @@ public class PlayerHealth : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        _checkCol = GameObject.FindGameObjectWithTag("Look_Front").GetComponent<CheckCollision>();
-        MaxHealth = 3f;
-        CurrentHealth = 3f;
+        lives = 3;
+        MaxHealth = 100f;
+        CurrentHealth = 100f;
 
         defaultTimeState = 24f * seconds + 12f;
         timer = defaultTimeState;
@@ -32,8 +34,8 @@ public class PlayerHealth : MonoBehaviour {
     
     void Update()
     {
-
-        if(AttackCooldown)
+        _checkCol = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<CheckCollision>();
+        if (AttackCooldown)
         {
             timer--;
             
@@ -46,7 +48,16 @@ public class PlayerHealth : MonoBehaviour {
 
         if (CurrentHealth <= 0)
         {
-            _checkCol.Respawn();
+
+            if (lives <= 0)
+            {
+                _checkCol.Respawn();
+            }
+            else
+            {
+                lives--;
+                CurrentHealth = MaxHealth;
+            }
         }
     }
     public void GetDamage(float damage)

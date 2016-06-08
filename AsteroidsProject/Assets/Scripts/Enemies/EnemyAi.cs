@@ -47,10 +47,12 @@ public class EnemyAi : MonoBehaviour {
         if(isWalking)
         {
             _anim.SetBool("isWalking", true);
+            _anim.SetBool("isAttacking", false);
         }
         if(isAttacking)
         {
             _anim.SetBool("isAttacking", true);
+            _anim.SetBool("isWalking", false);
         }
     }
     void Update()

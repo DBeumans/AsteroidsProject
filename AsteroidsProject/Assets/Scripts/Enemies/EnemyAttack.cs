@@ -14,7 +14,7 @@ public class EnemyAttack : MonoBehaviour {
     {
         _enemyColCheck = gameObject.GetComponent<EnemyCollisionCheck>();
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        SendDamage = 1f;
+        SendDamage = 20f;
     }
 
 

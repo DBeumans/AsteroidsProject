@@ -12,7 +12,7 @@ public class Save : MonoBehaviour {
 
     float Score;
     float Wave;
-    float Minutes, Seconds;
+    float Minutes, Seconds, Hours;
     public bool SaveCompleted;
 
     void Start ()
@@ -27,16 +27,19 @@ public class Save : MonoBehaviour {
         Wave = _wavemanager.waveCounter;
         Minutes = _timer.minutes;
         Seconds = _timer.seconds;
+        Hours = _timer.hours;
 
         PlayerPrefs.SetFloat("Score", Score);
         PlayerPrefs.SetFloat("Wave", Wave);
         PlayerPrefs.SetFloat("Seconds", Seconds);
         PlayerPrefs.SetFloat("Minutes", Minutes);
+        PlayerPrefs.SetFloat("Hours", Hours);
         PlayerPrefs.Save();
         Debug.Log(PlayerPrefs.GetFloat("Score"));
         Debug.Log(PlayerPrefs.GetFloat("Wave"));
         Debug.Log(PlayerPrefs.GetFloat("Seconds"));
         Debug.Log(PlayerPrefs.GetFloat("Minutes"));
+        Debug.Log(PlayerPrefs.GetFloat("Hours"));
         SaveCompleted = true;
 
 

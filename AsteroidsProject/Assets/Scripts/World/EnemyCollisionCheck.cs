@@ -32,12 +32,16 @@ public class EnemyCollisionCheck : MonoBehaviour {
         {             
             _enemy.ChasePlayer = true;
             _enemyAttack.Attack();
+            _enemy.isAttacking = true;
+            _enemy.isWalking = false;
 
         }
 
         if(!PlayerInSight)
         {
             _enemy.ChasePlayer = false;
+            _enemy.isWalking = true;
+            _enemy.isAttacking = false;
             
         }
 	}

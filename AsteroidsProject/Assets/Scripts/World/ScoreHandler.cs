@@ -13,7 +13,7 @@ public class ScoreHandler : MonoBehaviour {
     }
     void Update()
     {
-        _LevelManager.ScoreText.text = "Score: " + Score;
+        _LevelManager.ScoreText.text = Score.ToString();
     }
     public void RecieveScore(float value)
     {
