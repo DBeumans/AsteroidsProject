@@ -6,6 +6,7 @@ public class EnemyAi : MonoBehaviour {
     // FLOATS
     
     public float MovementSpeed = 2;
+
     float RandomNumber;
 
     float SendScore = 2;
@@ -31,6 +32,12 @@ public class EnemyAi : MonoBehaviour {
     public bool isWalking;
     public bool isAttacking;
 
+    float defaultTimeState;
+    [SerializeField]
+    float timer;
+    float seconds;
+
+
     ScoreHandler _ScoreHandler;
     Animator _anim;
     Rigidbody2D rb2d;
@@ -40,6 +47,11 @@ public class EnemyAi : MonoBehaviour {
         _anim = GetComponent<Animator>();
         _ScoreHandler = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreHandler>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+
+        seconds = Random.Range(0f, 4f);
+        defaultTimeState = 24f * seconds + 12f;
+        timer = defaultTimeState;
+
     }
 
     void AnimCheck()
@@ -67,6 +79,13 @@ public class EnemyAi : MonoBehaviour {
             rb2d.gravityScale = 1;
         }
         chase();
+        timer--;
+        if(timer <= 0)
+        {
+            RandomDirection();
+            seconds = Random.Range(0f, 4f);
+            timer = defaultTimeState;
+        }
 
 
     }
@@ -90,6 +109,27 @@ public class EnemyAi : MonoBehaviour {
         }
         
     }
+
+    void RandomDirection()
+    {
+        RandomNumber = Random.Range(0, 2);
+        if (RandomNumber < 1)
+        {
+            
+            Left = true;
+            Right = false;
+                
+        }
+        else
+        {
+            
+            Right = true;
+            Left = false;
+                
+        }
+    }
+        
+
 
     public void chase()
     {
