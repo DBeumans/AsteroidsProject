@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     float MaxHealth = 100f;
 
+<<<<<<< HEAD
     Animator _anim;
     EnemyAi _enemyAI;
 
@@ -28,6 +29,20 @@ public class EnemyHealth : MonoBehaviour {
         defaultTimeState = 24f * seconds + 12f ;
         timer = defaultTimeState;
     }
+=======
+    [SerializeField]
+    AudioClip enemy_hit;
+    AudioSource _audiosource;
+
+    
+    public float GetDamage = 20;
+	
+    void Start()
+    {
+        _audiosource = GetComponent<AudioSource>();
+    }
+
+>>>>>>> origin/master
 	// Update is called once per frame
 	void Update ()
     {
@@ -56,6 +71,7 @@ public class EnemyHealth : MonoBehaviour {
     {
         if(other.gameObject.tag == "Bullet")
         {
+            _audiosource.PlayOneShot(enemy_hit, 1f);
             Destroy(other.gameObject);
             RecieveDamage(GetDamage);
         }
