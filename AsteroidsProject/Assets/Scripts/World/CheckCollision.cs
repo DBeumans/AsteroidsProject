@@ -25,13 +25,13 @@ public class CheckCollision : MonoBehaviour {
   
         if (_save.SaveCompleted)
         {
-            _playerhealth.CurrentHealth = 0;
+            //_playerhealth.CurrentHealth = 0;
             SceneManager.LoadScene(2);
         }
     }
 
 
-    void Respawn()
+    public void Respawn()
     {
         _save.SaveFile();
     }

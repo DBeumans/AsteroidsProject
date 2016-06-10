@@ -78,7 +78,6 @@
      <None Include="Assets\Prefabs\placeholder.txt" />
      <None Include="Assets\Scripts\Camera\placeholder.txt" />
      <None Include="Assets\READ ME!.txt" />
-     <None Include="Assets\Audio\placeholder.txt" />
      <None Include="Assets\Scripts\Player\placeholder.txt" />
      <None Include="Assets\Scenes\placeholder.txt" />
  <Reference Include="UnityEngine.Networking">

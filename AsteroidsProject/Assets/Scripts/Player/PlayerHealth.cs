@@ -3,29 +3,76 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 
-    
+    CheckCollision _checkCol;
+
+    public float lives;
+
     public float CurrentHealth;
     [SerializeField]
     float MaxHealth;
 
-	// Use this for initialization
-	void Start ()
-    {
-        MaxHealth = 3f;
-        CurrentHealth = 3f;
-        
+    [SerializeField]
+    bool AttackCooldown;
 
+    float defaultTimeState;
+    [SerializeField]
+    float timer;
+    [SerializeField]
+    float seconds;
+
+    // Use this for initialization
+    void Start ()
+    {
+        lives = 3;
+        MaxHealth = 100f;
+        CurrentHealth = 100f;
+
+        defaultTimeState = 24f * seconds + 12f;
+        timer = defaultTimeState;
+    
     }
-	
-	// Update is called once per frame
-	void Update ()
+    
+    void Update()
     {
-	
-	}
+        _checkCol = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<CheckCollision>();
+        if (AttackCooldown)
+        {
+            timer--;
+            
+        }
+        if (timer <= 0)
+        {
+            timer = defaultTimeState;
+            AttackCooldown = false;
+        }
 
-    public void GetDamage(int damage)
+        if (CurrentHealth <= 0)
+        {
+
+            if (lives <= 0)
+            {
+                _checkCol.Respawn();
+            }
+            else
+            {
+                lives--;
+                CurrentHealth = MaxHealth;
+            }
+        }
+    }
+    public void GetDamage(float damage)
     {
-        CurrentHealth = CurrentHealth - damage;
-        Debug.Log(CurrentHealth);
+        if(!AttackCooldown)
+        {
+            CurrentHealth = CurrentHealth - damage;
+            AttackCooldown = true;
+            Debug.Log(CurrentHealth);
+        }
+        else
+        {
+           // Debug.Log("nothing");
+        }
+        
+        
     }
 }

@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour {
     Text TimerText;
 
     
-    public float seconds, minutes;
+    public float seconds, minutes, hours;
 
 	// Use this for initialization
 	void Start ()
@@ -22,5 +22,11 @@ public class Timer : MonoBehaviour {
         minutes = (int)(Time.timeSinceLevelLoad / 60f);
         seconds = (int)(Time.timeSinceLevelLoad % 60f);
         TimerText.text = minutes.ToString("00") + " : " + seconds.ToString("00");
+
+        if(minutes >= 60)
+        {
+            hours++;
+            minutes = 0;
+        }
 	}
 }
