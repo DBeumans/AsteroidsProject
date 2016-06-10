@@ -8,8 +8,8 @@ public class Save : MonoBehaviour {
     Timer _timer;
     WaveManager _wavemanager;
 
-    
 
+    float playerMoney;
     float Score;
     float Wave;
     float Minutes, Seconds, Hours;
@@ -23,11 +23,15 @@ public class Save : MonoBehaviour {
 	}
     public void SaveFile()
     {
+       
         Score = _scorehandler.Score;
         Wave = _wavemanager.waveCounter;
         Minutes = _timer.minutes;
         Seconds = _timer.seconds;
         Hours = _timer.hours;
+
+        playerMoney = Score;
+        Debug.Log(playerMoney);
 
         PlayerPrefs.SetFloat("Score", Score);
         PlayerPrefs.SetFloat("Wave", Wave);

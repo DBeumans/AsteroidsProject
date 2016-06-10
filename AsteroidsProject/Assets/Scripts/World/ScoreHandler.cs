@@ -10,6 +10,7 @@ public class ScoreHandler : MonoBehaviour {
     {
         _LevelManager = gameObject.GetComponent<LevelManager>();
         Score = 0;
+        
     }
     void Update()
     {

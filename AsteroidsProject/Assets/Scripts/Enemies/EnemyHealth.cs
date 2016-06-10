@@ -8,16 +8,43 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     float MaxHealth = 100f;
 
-    
+    Animator _anim;
+    EnemyAi _enemyAI;
+
+    float defaultTimeState;
+    [SerializeField]
+    float timer;
+    float seconds;
+
     public float GetDamage = 20;
 	
+
+    void Start()
+    {
+        _anim = gameObject.GetComponent<Animator>();
+        _enemyAI = gameObject.GetComponent<EnemyAi>();
+
+        seconds = 1.4f;
+        defaultTimeState = 24f * seconds + 12f ;
+        timer = defaultTimeState;
+    }
 	// Update is called once per frame
 	void Update ()
     {
 	    if(CurrentHealth <= 0)
         {
-            Destroy(gameObject);
+            _anim.SetBool("isDeath", true);
+            timer--;
         }
+        if(timer <= 0)
+        {
+            _enemyAI.MovementSpeed = 0;
+            Destroy(gameObject);
+
+            
+        }
+
+        
 	}
 
     public void RecieveDamage(float damage)
