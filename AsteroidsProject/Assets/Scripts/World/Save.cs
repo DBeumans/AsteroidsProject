@@ -30,7 +30,8 @@ public class Save : MonoBehaviour {
         Seconds = _timer.seconds;
         Hours = _timer.hours;
 
-        playerMoney = Score;
+        
+        playerMoney += Score;
         Debug.Log(playerMoney);
 
         PlayerPrefs.SetFloat("Score", Score);
@@ -38,12 +39,14 @@ public class Save : MonoBehaviour {
         PlayerPrefs.SetFloat("Seconds", Seconds);
         PlayerPrefs.SetFloat("Minutes", Minutes);
         PlayerPrefs.SetFloat("Hours", Hours);
+        PlayerPrefs.SetFloat("PlayerMoney", playerMoney);
         PlayerPrefs.Save();
         Debug.Log(PlayerPrefs.GetFloat("Score"));
         Debug.Log(PlayerPrefs.GetFloat("Wave"));
         Debug.Log(PlayerPrefs.GetFloat("Seconds"));
         Debug.Log(PlayerPrefs.GetFloat("Minutes"));
         Debug.Log(PlayerPrefs.GetFloat("Hours"));
+        Debug.Log(PlayerPrefs.GetFloat("PlayerMoney"));
         SaveCompleted = true;
 
 

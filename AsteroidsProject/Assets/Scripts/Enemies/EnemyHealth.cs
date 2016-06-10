@@ -8,9 +8,12 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     float MaxHealth = 100f;
 
-<<<<<<< HEAD
+
     Animator _anim;
     EnemyAi _enemyAI;
+    AudioSource _audiosource;
+    [SerializeField]
+    AudioClip enemy_hit;
 
     float defaultTimeState;
     [SerializeField]
@@ -18,31 +21,19 @@ public class EnemyHealth : MonoBehaviour {
     float seconds;
 
     public float GetDamage = 20;
-	
 
     void Start()
     {
         _anim = gameObject.GetComponent<Animator>();
         _enemyAI = gameObject.GetComponent<EnemyAi>();
+        _audiosource = GetComponent<AudioSource>();
 
         seconds = 1.4f;
-        defaultTimeState = 24f * seconds + 12f ;
+        defaultTimeState = 24f * seconds + 12f;
         timer = defaultTimeState;
     }
-=======
-    [SerializeField]
-    AudioClip enemy_hit;
-    AudioSource _audiosource;
 
-    
-    public float GetDamage = 20;
-	
-    void Start()
-    {
-        _audiosource = GetComponent<AudioSource>();
-    }
 
->>>>>>> origin/master
 	// Update is called once per frame
 	void Update ()
     {
