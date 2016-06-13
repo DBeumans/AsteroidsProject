@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 
 public class Save : MonoBehaviour {
@@ -7,7 +7,14 @@ public class Save : MonoBehaviour {
     ScoreHandler _scorehandler;
     Timer _timer;
     WaveManager _wavemanager;
+    // naam > points > wave > hours > minutes > seconds
 
+
+    int[] player_points;
+    int[] player_wave;
+    int[] player_hours;
+    int[] player_minutes;
+    int[] player_seconds;
 
     float playerMoney;
     float Score;
@@ -17,6 +24,8 @@ public class Save : MonoBehaviour {
 
     void Start ()
     {
+
+        
         _wavemanager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<WaveManager>();
         _timer = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Timer>();
         _scorehandler = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreHandler>();
@@ -30,7 +39,6 @@ public class Save : MonoBehaviour {
         Seconds = _timer.seconds;
         Hours = _timer.hours;
 
-        
         playerMoney += Score;
         Debug.Log(playerMoney);
 
@@ -47,6 +55,9 @@ public class Save : MonoBehaviour {
         Debug.Log(PlayerPrefs.GetFloat("Minutes"));
         Debug.Log(PlayerPrefs.GetFloat("Hours"));
         Debug.Log(PlayerPrefs.GetFloat("PlayerMoney"));
+
+        
+
         SaveCompleted = true;
 
 
