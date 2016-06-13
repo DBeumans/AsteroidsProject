@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -90,15 +84,18 @@
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUps.cs" />
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI\OnHoverover.cs" />
     <Compile Include="Assets\Scripts\World\CheckCollision.cs" />
     <Compile Include="Assets\Scripts\World\CheckSpawningCollision.cs" />
     <Compile Include="Assets\Scripts\World\EnemyCollisionCheck.cs" />
     <Compile Include="Assets\Scripts\World\HighScore.cs" />
     <Compile Include="Assets\Scripts\World\LevelManager.cs" />
     <Compile Include="Assets\Scripts\World\Load.cs" />
+    <Compile Include="Assets\Scripts\World\PlayerHighscoreList.cs" />
     <Compile Include="Assets\Scripts\World\Save.cs" />
     <Compile Include="Assets\Scripts\World\ScoreHandler.cs" />
     <Compile Include="Assets\Scripts\World\ShopManager.cs" />
+    <Compile Include="Assets\Scripts\World\Simple_MenuManager.cs" />
     <Compile Include="Assets\Scripts\World\Spawning_back.cs" />
     <Compile Include="Assets\Scripts\World\Spawning_front.cs" />
     <Compile Include="Assets\Scripts\World\Timer.cs" />
@@ -107,7 +104,6 @@
     <Compile Include="Assets\Scripts\World\_startGame.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Audio\placeholder.txt" />
     <None Include="Assets\Prefabs\placeholder.txt" />
     <None Include="Assets\READ ME!.txt" />
     <None Include="Assets\Scenes\placeholder.txt" />

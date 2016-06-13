@@ -4,19 +4,33 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour {
 
+    // in Lobby
     [SerializeField]
-    GameObject MainMenuPanel;
+    GameObject LobbyPanel;
+    [SerializeField]
+    GameObject Infopanel;
     [SerializeField]
     GameObject OptionsPanel;
     [SerializeField]
     GameObject CreditsPanel;
 
+    bool EnableLobby;
+
     void Start()
     {
+       
+            LobbyPanel.SetActive(true);
+            OptionsPanel.SetActive(false);
+            CreditsPanel.SetActive(false);
+            Infopanel.SetActive(false);
         
-        MainMenuPanel.SetActive(true);
-        OptionsPanel.SetActive(false);
-        CreditsPanel.SetActive(false);
+ 
+            OptionsPanel.SetActive(false);
+            CreditsPanel.SetActive(false);
+            Infopanel.SetActive(false);
+            LobbyPanel.SetActive(false);
+        
+
     }
     public void StartGame(int scene)
     {
@@ -27,12 +41,12 @@ public class MenuManager : MonoBehaviour {
     {
         if(value)
         {
-            MainMenuPanel.SetActive(false);
+            LobbyPanel.SetActive(false);
             OptionsPanel.SetActive(true);
         } 
         if(!value)
         {
-            MainMenuPanel.SetActive(true);
+            LobbyPanel.SetActive(true);
             OptionsPanel.SetActive(false);
         }      
 
@@ -51,48 +65,46 @@ public class MenuManager : MonoBehaviour {
     }
     */
 
-    public void ChangeGraphics(int value)
-    {
-        if(value == 1)
-        {
-            QualitySettings.currentLevel = QualityLevel.Fastest;
-        }
-        if(value == 2)
-        {
-            QualitySettings.currentLevel = QualityLevel.Fast;
-        }
-
-        if(value == 3)
-        {
-            QualitySettings.currentLevel = QualityLevel.Simple;
-        }
-        if(value == 4)
-        {
-            QualitySettings.currentLevel = QualityLevel.Good;
-        }
-        if(value == 5)
-        {
-            QualitySettings.currentLevel = QualityLevel.Beautiful;
-        }
-        if(value == 6)
-        {
-            QualitySettings.currentLevel = QualityLevel.Fantastic;
-        }
-    }
-
     public void CreditsShow(bool value)
     {
         if(value)
         {
-            MainMenuPanel.SetActive(false);
+            LobbyPanel.SetActive(false);
             CreditsPanel.SetActive(true);
         }
         if(!value)
         {
-            MainMenuPanel.SetActive(true);
+            LobbyPanel.SetActive(true);
             CreditsPanel.SetActive(false);
         }
     }
+
+    public void ShowLobby()
+    {
+        LobbyPanel.SetActive(true);
+        Infopanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        CreditsPanel.SetActive(false);
+    }
+
+    public void GotoLobby(bool value)
+    {
+        if(value)
+        {
+            EnableLobby = true;
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void ShowInfo()
+    {
+        Infopanel.SetActive(true);
+        LobbyPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        CreditsPanel.SetActive(false);
+
+    }
+
     public void QuitGame()
     {
         Application.Quit();
