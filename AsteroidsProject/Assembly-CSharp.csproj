@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\CameraLock.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemies\SpecialEnemyAI.cs" />
      <Compile Include="Assets\Scripts\Player\Bullet.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\World\CheckCollision.cs" />
      <Compile Include="Assets\Scripts\World\CheckSpawningCollision.cs" />
      <Compile Include="Assets\Scripts\World\EnemyCollisionCheck.cs" />
+     <Compile Include="Assets\Scripts\World\HighScore.cs" />
      <Compile Include="Assets\Scripts\World\LevelManager.cs" />
      <Compile Include="Assets\Scripts\World\Load.cs" />
      <Compile Include="Assets\Scripts\World\Save.cs" />
