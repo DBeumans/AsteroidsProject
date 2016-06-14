@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/DylanScene.unity
-=======
-- path: Assets/Scenes/Lobby_Scene.unity
->>>>>>> origin/master
   isLoaded: 1
   isActive: 1
