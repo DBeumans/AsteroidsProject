@@ -7,19 +7,12 @@ public class Save : MonoBehaviour {
     ScoreHandler _scorehandler;
     Timer _timer;
     WaveManager _wavemanager;
-    // naam > points > wave > hours > minutes > seconds
-
-
-    int[] player_points;
-    int[] player_wave;
-    int[] player_hours;
-    int[] player_minutes;
-    int[] player_seconds;
+    // naam > points > wave > hours > minutes > seconds    
 
     float playerMoney;
-    float Score;
-    float Wave;
-    float Minutes, Seconds, Hours;
+    float inkomendeScore;
+    float inkomendeWave, hoogsteWave;
+    float inkomendeMinutes, inkomendeSeconds, inkomendeHours;
     public bool SaveCompleted;
 
     void Start ()
@@ -32,21 +25,30 @@ public class Save : MonoBehaviour {
 	}
     public void SaveFile()
     {
-       
-        Score = _scorehandler.Score;
-        Wave = _wavemanager.waveCounter;
-        Minutes = _timer.minutes;
-        Seconds = _timer.seconds;
-        Hours = _timer.hours;
 
-        playerMoney += Score;
+        inkomendeScore = _scorehandler.Score;
+        inkomendeWave = _wavemanager.waveCounter;
+        inkomendeMinutes = _timer.minutes;
+        inkomendeSeconds = _timer.seconds;
+        inkomendeHours = _timer.hours;
+
+        if (inkomendeWave > hoogsteWave)
+        {
+            hoogsteWave = inkomendeWave;
+        }
+
+        
+
+                
+
+        playerMoney += inkomendeScore;
         Debug.Log(playerMoney);
 
-        PlayerPrefs.SetFloat("Score", Score);
-        PlayerPrefs.SetFloat("Wave", Wave);
-        PlayerPrefs.SetFloat("Seconds", Seconds);
-        PlayerPrefs.SetFloat("Minutes", Minutes);
-        PlayerPrefs.SetFloat("Hours", Hours);
+        PlayerPrefs.SetFloat("Score", inkomendeScore);
+        PlayerPrefs.SetFloat("Wave", hoogsteWave);
+        PlayerPrefs.SetFloat("Seconds", inkomendeSeconds);
+        PlayerPrefs.SetFloat("Minutes", inkomendeMinutes);
+        PlayerPrefs.SetFloat("Hours", inkomendeHours);
         PlayerPrefs.SetFloat("PlayerMoney", playerMoney);
         PlayerPrefs.Save();
         Debug.Log(PlayerPrefs.GetFloat("Score"));
@@ -55,8 +57,6 @@ public class Save : MonoBehaviour {
         Debug.Log(PlayerPrefs.GetFloat("Minutes"));
         Debug.Log(PlayerPrefs.GetFloat("Hours"));
         Debug.Log(PlayerPrefs.GetFloat("PlayerMoney"));
-
-        
 
         SaveCompleted = true;
 
