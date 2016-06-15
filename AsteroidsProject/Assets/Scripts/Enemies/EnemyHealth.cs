@@ -39,6 +39,7 @@ public class EnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        
 	    if(CurrentHealth <= 0)
         {
             _anim.SetBool("isDeath", true);
@@ -52,8 +53,8 @@ public class EnemyHealth : MonoBehaviour {
             
         }
 
-        
-	}
+
+    }
 
     public void RecieveDamage(float damage)
     {
