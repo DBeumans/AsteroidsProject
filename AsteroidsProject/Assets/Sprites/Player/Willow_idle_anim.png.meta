@@ -1,22 +1,12 @@
 fileFormatVersion: 2
-guid: 75b3302bc1ba94140a3333cef12da8c1
-timeCreated: 1465890694
+guid: 3a0b26c4588e21d479b46dc9aa6363c3
+timeCreated: 1466077904
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Willow_Stop_anim_0
-    21300002: Willow_Stop_anim_1
-    21300004: Willow_Stop_anim_2
-    21300006: Willow_Stop_anim_3
-    21300008: Willow_Stop_anim_4
-    21300010: Willow_idle_anim_0
-    21300012: Willow_idle_anim_1
-    21300014: Willow_idle_anim_2
-    21300016: Willow_idle_anim_sprite (1)_8
-    21300018: Willow_idle_anim_sprite (1)_9
-    21300020: Willow_idle_anim_sprite (1)_10
-    21300022: Willow_idle_anim_sprite (1)_11
-    21300024: Willow_idle_anim_sprite (1)_12
+    21300000: Willow_Idle_anim_5
+    21300002: Willow_Idle_anim_6
+    21300004: Willow_Idle_anim_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -63,119 +53,90 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Willow_idle_anim_0
+    - name: Willow_Idle_anim_5
       rect:
         serializedVersion: 2
-        x: 579
-        y: 156
-        width: 69
+        x: 532
+        y: 145
+        width: 82
         height: 171
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16.5, y: 73.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 63.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 70.5}
-        - {x: 8.5, y: 70.5}
-        - {x: 7.5, y: 75.5}
-        - {x: 6.5, y: 85.5}
-        - {x: -20.5, y: 85.5}
-        - {x: -30.5, y: 62.5}
-        - {x: -30.5, y: -70.5}
-        - {x: -18.5, y: -85.5}
-        - {x: 28.5, y: -85.5}
-        - {x: 34.5, y: -78.5}
-        - {x: 34.5, y: 34.5}
-        - {x: 30.5, y: 73.5}
-      - - {x: -31.5, y: 9.5}
-        - {x: -31.5, y: 12.5}
-        - {x: -34.5, y: 13.5}
-        - {x: -34.5, y: 8.5}
-      - - {x: -25.5, y: 57.5}
-        - {x: -24.5, y: 54.5}
-        - {x: -21.5, y: 54.5}
-        - {x: -18.5, y: 56.5}
-        - {x: -20.5, y: 61.5}
-        - {x: -23.5, y: 61.5}
-        - {x: -25.5, y: 60.5}
-    - name: Willow_idle_anim_1
+      - - {x: 10, y: 73.5}
+        - {x: 6, y: 67.5}
+        - {x: 5, y: 63.5}
+        - {x: 6, y: 67.5}
+        - {x: 5, y: 70.5}
+        - {x: 2, y: 70.5}
+        - {x: 1, y: 75.5}
+        - {x: 0, y: 85.5}
+        - {x: -27, y: 85.5}
+        - {x: -37, y: 62.5}
+        - {x: -37, y: -70.5}
+        - {x: -25, y: -85.5}
+        - {x: 37, y: -85.5}
+        - {x: 41, y: -71.5}
+        - {x: 41, y: 57.5}
+        - {x: 16, y: 75.5}
+      - - {x: -38, y: 9.5}
+        - {x: -38, y: 12.5}
+        - {x: -41, y: 13.5}
+        - {x: -41, y: 8.5}
+      - - {x: -32, y: 57.5}
+        - {x: -31, y: 54.5}
+        - {x: -28, y: 54.5}
+        - {x: -25, y: 56.5}
+        - {x: -27, y: 61.5}
+        - {x: -30, y: 61.5}
+        - {x: -32, y: 60.5}
+    - name: Willow_Idle_anim_6
       rect:
         serializedVersion: 2
-        x: 676
-        y: 154
-        width: 69
-        height: 171
+        x: 627
+        y: 146
+        width: 68
+        height: 174
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16.5, y: 73.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 63.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 70.5}
-        - {x: 8.5, y: 70.5}
-        - {x: 7.5, y: 75.5}
-        - {x: 6.5, y: 85.5}
-        - {x: -20.5, y: 85.5}
-        - {x: -30.5, y: 63.5}
-        - {x: -30.5, y: -83.5}
-        - {x: -24.5, y: -85.5}
-        - {x: 34.5, y: -85.5}
-        - {x: 34.5, y: 35.5}
-        - {x: 30.5, y: 73.5}
-      - - {x: -31.5, y: 9.5}
-        - {x: -31.5, y: 12.5}
-        - {x: -34.5, y: 13.5}
-        - {x: -34.5, y: 8.5}
-      - - {x: -25.5, y: 57.5}
-        - {x: -24.5, y: 54.5}
-        - {x: -21.5, y: 54.5}
-        - {x: -18.5, y: 56.5}
-        - {x: -20.5, y: 61.5}
-        - {x: -23.5, y: 61.5}
-        - {x: -25.5, y: 60.5}
-    - name: Willow_idle_anim_2
+      - - {x: 28, y: 80}
+        - {x: 10, y: 87}
+        - {x: -9, y: 87}
+        - {x: -31, y: 76}
+        - {x: -31, y: -83}
+        - {x: -22, y: -87}
+        - {x: 26, y: -87}
+        - {x: 34, y: -78}
+        - {x: 34, y: 43}
+        - {x: 33, y: 56}
+    - name: Willow_Idle_anim_7
       rect:
         serializedVersion: 2
-        x: 763
-        y: 154
-        width: 69
-        height: 171
+        x: 701
+        y: 148
+        width: 72
+        height: 173
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16.5, y: 73.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 63.5}
-        - {x: 12.5, y: 67.5}
-        - {x: 11.5, y: 70.5}
-        - {x: 8.5, y: 70.5}
-        - {x: 7.5, y: 75.5}
-        - {x: 6.5, y: 85.5}
-        - {x: -20.5, y: 85.5}
-        - {x: -30.5, y: 62.5}
-        - {x: -30.5, y: -70.5}
-        - {x: -18.5, y: -85.5}
-        - {x: 28.5, y: -85.5}
-        - {x: 34.5, y: -78.5}
-        - {x: 34.5, y: 34.5}
-        - {x: 30.5, y: 73.5}
-      - - {x: -31.5, y: 9.5}
-        - {x: -31.5, y: 12.5}
-        - {x: -34.5, y: 13.5}
-        - {x: -34.5, y: 8.5}
-      - - {x: -25.5, y: 57.5}
-        - {x: -24.5, y: 54.5}
-        - {x: -21.5, y: 54.5}
-        - {x: -18.5, y: 56.5}
-        - {x: -20.5, y: 61.5}
-        - {x: -23.5, y: 61.5}
-        - {x: -25.5, y: 60.5}
+      - - {x: 2, y: 86.5}
+        - {x: -16, y: 86.5}
+        - {x: -30, y: 81.5}
+        - {x: -30, y: -85.5}
+        - {x: -23, y: -86.5}
+        - {x: 28, y: -86.5}
+        - {x: 36, y: -72.5}
+        - {x: 36, y: -0.5}
+        - {x: 26, y: 75.5}
+      - - {x: -34, y: 5.5}
+        - {x: -31, y: 6.5}
+        - {x: -31, y: 9.5}
+        - {x: -34, y: 10.5}
+        - {x: -36, y: 8.5}
     outline: []
   spritePackingTag: 
   userData: 

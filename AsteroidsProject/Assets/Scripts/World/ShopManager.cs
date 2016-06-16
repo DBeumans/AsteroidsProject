@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
 
-    // Text zetten
-    // nieuwe bool aanmaken voor range upgrade  ( can upgrade )
 
     [SerializeField]
     Text UpgradeCounterTextDamage;
@@ -22,6 +20,7 @@ public class ShopManager : MonoBehaviour {
     int Gun_Current_Range_Level;
 
     bool canUpgrade = true;
+    bool canUpgradeRange = true;
     public int Bullet_Damage = 20;
     public float Bullet_Range = 0.40f;
     int UpgradePriceDamage;
@@ -37,11 +36,16 @@ public class ShopManager : MonoBehaviour {
     void Update()
     {
         UpgradeCounterTextDamage.text = Gun_Current_Damage_Level.ToString() + " / " + Upgrade_Gun_Damage_Level_Cap.ToString();
+        UpgradeCounterTextRange.text = Gun_Current_Range_Level.ToString() + " / " + Upgrade_Gun_Range_Level_Cap.ToString();
         //_EnemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
         if (Gun_Current_Damage_Level >= Upgrade_Gun_Damage_Level_Cap)
         {
             // disable further upgrade.
             canUpgrade = false;
+        }
+        if(Gun_Current_Range_Level >= Upgrade_Gun_Range_Level_Cap)
+        {
+            canUpgradeRange = false;
         }
     }
 
@@ -55,7 +59,7 @@ public class ShopManager : MonoBehaviour {
         // increase Gun_Current_Level
         if(canUpgrade)
         {
-            UpgradePriceDamage = 100;
+            UpgradePriceDamage = 1;
             if (_ScoreHandler.Score >= 100)
             {
                 //increase damage
@@ -80,11 +84,10 @@ public class ShopManager : MonoBehaviour {
 
     public void Upgrade_Gun_Range()
     {
-        if (canUpgrade)
+        if (canUpgradeRange)
         {
-
-            UpgradePriceRange = 100;
-            if (_ScoreHandler.Score >= 200)
+            UpgradePriceRange = 1;
+            if (_ScoreHandler.Score >= 1)
             {
                 Bullet_Range = Bullet_Range + 10f;
                 Gun_Current_Range_Level++;

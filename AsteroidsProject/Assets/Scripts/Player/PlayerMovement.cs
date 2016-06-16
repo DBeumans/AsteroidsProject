@@ -116,11 +116,23 @@ public class PlayerMovement : MonoBehaviour {
             {
 
             }
+            /*
+            ****
 
+            FALLING ANIMATION
+
+            ****
+            else if(!grounded)
+            {
+                anim.SetBool("IsRunning", false);
+                //anim.SetBool("IsFalling", true);
+            }
+            */
             else
             {
                 anim.SetBool("IsRunning", false);
                 anim.SetBool("StopRunning", true);
+                //anim.SetBool("IsFalling", false);
             }
             
         }
