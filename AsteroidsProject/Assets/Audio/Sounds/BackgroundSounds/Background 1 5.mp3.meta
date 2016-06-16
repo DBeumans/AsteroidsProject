@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:AsteroidsProject/Assets/Audio/Sounds/BackgroundSounds/Background 1 5.mp3.meta
 guid: 81eb1c51915bdd34694c08ce63fff568
 timeCreated: 1466071251
+=======
+guid: 626b33c9924a2354385c27df3d253ecc
+timeCreated: 1466026719
+>>>>>>> origin/master:AsteroidsProject/Assets/Audio/Sounds/BackgroundSounds/Background 1 5.mp3.meta
 licenseType: Free
 AudioImporter:
   serializedVersion: 6

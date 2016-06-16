@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:AsteroidsProject/Assets/Audio/Sounds/BackgroundSounds/Background 4  4 (past het best bij thema).mp3.meta
 guid: 8ab6f82ee2025ca4a95b6b1eaec830c1
 timeCreated: 1466071268
+=======
+guid: cd4a5534ac198dd4ea26ac00584ec76f
+timeCreated: 1466026736
+>>>>>>> origin/master:AsteroidsProject/Assets/Audio/Sounds/BackgroundSounds/Background 4  4 (past het best bij thema).mp3.meta
 licenseType: Free
 AudioImporter:
   serializedVersion: 6

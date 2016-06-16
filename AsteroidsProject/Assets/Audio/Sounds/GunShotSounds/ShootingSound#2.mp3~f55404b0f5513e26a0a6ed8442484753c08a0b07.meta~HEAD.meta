@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:AsteroidsProject/Assets/Audio/Sounds/GunShotSounds/ShootingSound#2.mp3~f55404b0f5513e26a0a6ed8442484753c08a0b07.meta~HEAD.meta
 guid: ab71390045676504eae03191bd2b651d
 timeCreated: 1466071173
+=======
+guid: f559d6f0601a91444aabaf9f5b587c4e
+timeCreated: 1466026681
+>>>>>>> origin/master:AsteroidsProject/Assets/Audio/Sounds/GunShotSounds/ShootingSound#2.mp3~f55404b0f5513e26a0a6ed8442484753c08a0b07.meta~HEAD.meta
 licenseType: Free
 DefaultImporter:
   userData: 
