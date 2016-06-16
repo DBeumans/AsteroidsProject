@@ -6,54 +6,26 @@ public class PlayerHighscoreList : MonoBehaviour {
 
     public GameObject PlayerScoreEntryPrefab;
 
-    int lastChangeCounter;
-
-    HighScore _highscore;
+    Save _save;
 	// Use this for initialization
 	void Start () {
 
-        _highscore = GameObject.FindObjectOfType<HighScore>();
-
-        lastChangeCounter = _highscore.GetChangeCounter();
-
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-       
-        /*
-        // enable dit dan bug.
-        if(_highscore.GetChangeCounter() == lastChangeCounter)
-        {
-            // geen change
-            return;
-        }
-        */
-        lastChangeCounter = _highscore.GetChangeCounter();
-
-        while(this.transform.childCount >0)
-        {
-            Transform c = this.transform.GetChild(0);
-            c.SetParent(null);
-            Destroy(c.gameObject);    
-        }
-        string[] names = _highscore.GetPlayerNames("wave");
+        _save = GameObject.FindObjectOfType<Save>();
         
-        foreach (string name in names)
-        {
-            GameObject go = (GameObject)Instantiate(PlayerScoreEntryPrefab);
-            go.transform.SetParent(this.transform);
+        SetScore();
+    }
 
-            go.transform.Find("Points").GetComponent<Text>().text = name;
-            go.transform.Find("Wave").GetComponent<Text>().text = _highscore.GetScore(name, "wave").ToString();
-            go.transform.Find("Hours").GetComponent<Text>().text = _highscore.GetScore(name, "hours").ToString();
-            go.transform.Find("Minutes").GetComponent<Text>().text = _highscore.GetScore(name, "minutes").ToString();
-            go.transform.Find("Seconds").GetComponent<Text>().text = _highscore.GetScore(name, "seconds").ToString();
+    void SetScore()
+    {
+        GameObject go = (GameObject)Instantiate(PlayerScoreEntryPrefab);
+        go.transform.SetParent(this.transform);
 
+        //-------------------------------------------------------------
 
-        }
-
+        go.transform.Find("Points").GetComponent<Text>().text = PlayerPrefs.GetFloat("Score").ToString();
+        go.transform.Find("Wave").GetComponent<Text>().text = PlayerPrefs.GetFloat("Wave").ToString();
+        go.transform.Find("Hours").GetComponent<Text>().text = PlayerPrefs.GetFloat("Hours").ToString();
+        go.transform.Find("Minutes").GetComponent<Text>().text = PlayerPrefs.GetFloat("Minutes").ToString();
+        go.transform.Find("Seconds").GetComponent<Text>().text = PlayerPrefs.GetFloat("Seconds").ToString();
     }
 }

@@ -77,6 +77,7 @@ public class HighScore : MonoBehaviour {
         Init();
 
         return PlayerStats.Keys.OrderByDescending(  n => GetScore(n, sortingScoreType) ).ToArray();
+        
     }
 
     public int GetChangeCounter()
