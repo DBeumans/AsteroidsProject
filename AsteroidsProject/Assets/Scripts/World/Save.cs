@@ -11,7 +11,7 @@ public class Save : MonoBehaviour {
 
     float playerMoney;
     float inkomendeScore;
-    float inkomendeWave, hoogsteWave;
+    float inkomendeWave;
     float inkomendeMinutes, inkomendeSeconds, inkomendeHours;
     public bool SaveCompleted;
 
@@ -32,11 +32,6 @@ public class Save : MonoBehaviour {
         inkomendeSeconds = _timer.seconds;
         inkomendeHours = _timer.hours;
 
-        if (inkomendeWave > hoogsteWave)
-        {
-            hoogsteWave = inkomendeWave;
-        }
-
         
 
                 
@@ -45,7 +40,7 @@ public class Save : MonoBehaviour {
         Debug.Log(playerMoney);
 
         PlayerPrefs.SetFloat("Score", inkomendeScore);
-        PlayerPrefs.SetFloat("Wave", hoogsteWave);
+        PlayerPrefs.SetFloat("Wave", inkomendeWave);
         PlayerPrefs.SetFloat("Seconds", inkomendeSeconds);
         PlayerPrefs.SetFloat("Minutes", inkomendeMinutes);
         PlayerPrefs.SetFloat("Hours", inkomendeHours);

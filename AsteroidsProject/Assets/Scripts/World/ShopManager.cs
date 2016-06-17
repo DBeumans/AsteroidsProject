@@ -10,6 +10,7 @@ public class ShopManager : MonoBehaviour {
     [SerializeField]
     Text UpgradeCounterTextRange;
 
+    Text _textEditor;
     ScoreHandler _ScoreHandler;
     EnemyHealth _EnemyHealth;
     Bullet _Bullet;
@@ -29,7 +30,7 @@ public class ShopManager : MonoBehaviour {
     void Start()
     {
         _ScoreHandler = gameObject.GetComponent<ScoreHandler>();
-        
+        _textEditor = GameObject.FindObjectOfType<Text>();
         _Bullet = gameObject.GetComponent<Bullet>();
     }
 
@@ -37,15 +38,21 @@ public class ShopManager : MonoBehaviour {
     {
         UpgradeCounterTextDamage.text = Gun_Current_Damage_Level.ToString() + " / " + Upgrade_Gun_Damage_Level_Cap.ToString();
         UpgradeCounterTextRange.text = Gun_Current_Range_Level.ToString() + " / " + Upgrade_Gun_Range_Level_Cap.ToString();
+
         //_EnemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
         if (Gun_Current_Damage_Level >= Upgrade_Gun_Damage_Level_Cap)
         {
             // disable further upgrade.
             canUpgrade = false;
+            UpgradeCounterTextDamage.color = Color.red;
+            UpgradeCounterTextDamage.text = "MAX";
         }
         if(Gun_Current_Range_Level >= Upgrade_Gun_Range_Level_Cap)
         {
             canUpgradeRange = false;
+            UpgradeCounterTextRange.color = Color.red;
+            UpgradeCounterTextRange.text = "MAX";
+
         }
     }
 
