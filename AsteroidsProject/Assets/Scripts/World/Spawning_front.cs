@@ -8,7 +8,7 @@ public class Spawning_front : MonoBehaviour
     Transform[] spawnPoints;
     [SerializeField]
     GameObject enemy;
-    [SerializeField]
+
 
     float time = 0f;
     float timestop;
@@ -23,6 +23,7 @@ public class Spawning_front : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         timestop = 24 * Seconds + 1f;
         _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<WaveManager>();
     }
@@ -61,9 +62,11 @@ public class Spawning_front : MonoBehaviour
         // Find a random index between zero and one less than the number of spawn points.
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
+        
+
         // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
         Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         _levelManager.spawnAbleEnemies--;
-        
+
     }
 }

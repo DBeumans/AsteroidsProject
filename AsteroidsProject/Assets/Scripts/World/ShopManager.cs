@@ -10,6 +10,11 @@ public class ShopManager : MonoBehaviour {
     [SerializeField]
     Text UpgradeCounterTextRange;
 
+    [SerializeField]
+    Text UpgradePriceRangeText;
+    [SerializeField]
+    Text UpgradePriceDamageText;
+
     Text _textEditor;
     ScoreHandler _ScoreHandler;
     EnemyHealth _EnemyHealth;
@@ -24,8 +29,8 @@ public class ShopManager : MonoBehaviour {
     bool canUpgradeRange = true;
     public int Bullet_Damage = 20;
     public float Bullet_Range = 0.40f;
-    int UpgradePriceDamage;
-    int UpgradePriceRange;
+    int UpgradePriceDamage = 100;
+    int UpgradePriceRange = 100;
 
     void Start()
     {
@@ -38,6 +43,8 @@ public class ShopManager : MonoBehaviour {
     {
         UpgradeCounterTextDamage.text = Gun_Current_Damage_Level.ToString() + " / " + Upgrade_Gun_Damage_Level_Cap.ToString();
         UpgradeCounterTextRange.text = Gun_Current_Range_Level.ToString() + " / " + Upgrade_Gun_Range_Level_Cap.ToString();
+        UpgradePriceDamageText.text = "Price: " + UpgradePriceDamage.ToString();
+        UpgradePriceRangeText.text = "Price: " + UpgradePriceRange.ToString();
 
         //_EnemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
         if (Gun_Current_Damage_Level >= Upgrade_Gun_Damage_Level_Cap)
@@ -66,8 +73,8 @@ public class ShopManager : MonoBehaviour {
         // increase Gun_Current_Level
         if(canUpgrade)
         {
-            UpgradePriceDamage = 1;
-            if (_ScoreHandler.Score >= 100)
+            
+            if (_ScoreHandler.Score >= UpgradePriceDamage)
             {
                 //increase damage
                 // increase upgrade level
@@ -75,6 +82,7 @@ public class ShopManager : MonoBehaviour {
                 Bullet_Damage = Bullet_Damage + 5;
                 Gun_Current_Damage_Level++;
                 _ScoreHandler.Score -= UpgradePriceDamage;
+                UpgradePriceDamage += 100;
                 Debug.Log(Bullet_Damage);
             }
             else
@@ -93,12 +101,13 @@ public class ShopManager : MonoBehaviour {
     {
         if (canUpgradeRange)
         {
-            UpgradePriceRange = 1;
-            if (_ScoreHandler.Score >= 1)
+           
+            if (_ScoreHandler.Score >= UpgradePriceRange)
             {
                 Bullet_Range = Bullet_Range + 10f;
                 Gun_Current_Range_Level++;
                 _ScoreHandler.Score -= UpgradePriceRange;
+                UpgradePriceRange += 100;
                 Debug.Log(Bullet_Range);
             }
             else

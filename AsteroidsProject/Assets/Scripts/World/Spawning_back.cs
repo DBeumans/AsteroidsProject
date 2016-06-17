@@ -7,7 +7,7 @@ public class Spawning_back : MonoBehaviour {
     Transform[] spawnPoints;
     [SerializeField]
     GameObject enemy;
-    [SerializeField]
+
 
     float time = 0f;
     float timestop;
