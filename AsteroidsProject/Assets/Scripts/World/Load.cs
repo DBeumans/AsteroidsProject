@@ -15,6 +15,8 @@ public class Load : MonoBehaviour {
     [SerializeField]
     Text Time_Seconds;
 
+    [SerializeField]
+    GameObject playerHighScorePrefab;
 
     public float score;
     public float wave;
@@ -22,6 +24,7 @@ public class Load : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        
         score = PlayerPrefs.GetFloat("Score");
         wave = PlayerPrefs.GetFloat("Wave");
         minutes = PlayerPrefs.GetFloat("Minutes");
@@ -29,7 +32,8 @@ public class Load : MonoBehaviour {
         hours = PlayerPrefs.GetFloat("Hours");
         Debug.Log(hours + "H" + minutes + "M" + seconds + "S");
 
-	}
+
+    }
 
     void Update()
     {
