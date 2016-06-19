@@ -70,6 +70,7 @@ public class MenuManager : MonoBehaviour {
         if(value)
         {
             LobbyPanel.SetActive(false);
+            Infopanel.SetActive(false);
             CreditsPanel.SetActive(true);
         }
         if(!value)
@@ -83,8 +84,9 @@ public class MenuManager : MonoBehaviour {
     {
         LobbyPanel.SetActive(true);
         Infopanel.SetActive(false);
-        OptionsPanel.SetActive(false);
         CreditsPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        
     }
 
     public void GotoLobby(bool value)
@@ -100,8 +102,8 @@ public class MenuManager : MonoBehaviour {
     {
         Infopanel.SetActive(true);
         LobbyPanel.SetActive(false);
-        OptionsPanel.SetActive(false);
         CreditsPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
 
     }
 
