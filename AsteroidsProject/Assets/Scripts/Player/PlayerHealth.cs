@@ -20,6 +20,16 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     float seconds;
 
+    public bool potion_life_front;
+    public bool potion_full_front;
+    public bool potion_low_front;
+
+    public bool potion_life_back;
+    public bool potion_full_back;
+    public bool potion_low_back;
+
+    PowerUps _powerups;
+
     // Use this for initialization
     void Start ()
     {
@@ -29,7 +39,9 @@ public class PlayerHealth : MonoBehaviour {
 
         defaultTimeState = 24f * seconds + 12f;
         timer = defaultTimeState;
-    
+
+        _powerups = GameObject.FindObjectOfType<PowerUps>();
+
     }
     
     void Update()
@@ -74,5 +86,35 @@ public class PlayerHealth : MonoBehaviour {
         }
         
         
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Potion_life")
+        {
+            if (lives != 3)
+            {
+                Debug.Log("potion_life_back");
+                lives++;
+                Destroy(other.gameObject);
+            }
+        }
+        if(other.gameObject.tag == "Potion_full")
+        {
+            CurrentHealth = 100;
+            Debug.Log("potion_full_back");
+            Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "Potion_low")
+        {
+            if(CurrentHealth >=80)
+            {
+                CurrentHealth = 100;
+            }
+            CurrentHealth += 20;
+            Debug.Log("potion_low_back");
+            Destroy(other.gameObject);
+        }
     }
 }

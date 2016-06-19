@@ -3,16 +3,13 @@ using System.Collections;
 
 public class PowerUps : MonoBehaviour
 {
-     
+    [SerializeField]
+    float destroyTimer;
+
 
     void Start ()
 	{
-        
-		
-	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-
+        destroyTimer = 10f;
+        Destroy(gameObject, destroyTimer);
 	}
 }

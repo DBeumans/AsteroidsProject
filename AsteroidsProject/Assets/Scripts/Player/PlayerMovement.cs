@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour {
     bool _takeover = false;
     bool StopAnimationPlaying;
 
+    public bool ChangeBackground;
+
     void Start()
     {
         // Get component function.
@@ -183,6 +185,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
+                ChangeBackground = true;
                 teleportCounter++;
             }
             else
@@ -200,6 +203,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
+                ChangeBackground = false;
                 teleportCounter--;
             }
             else

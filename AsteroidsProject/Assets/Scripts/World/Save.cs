@@ -30,11 +30,7 @@ public class Save : MonoBehaviour {
         inkomendeWave = _wavemanager.waveCounter;
         inkomendeMinutes = _timer.minutes;
         inkomendeSeconds = _timer.seconds;
-        inkomendeHours = _timer.hours;
-
-        
-
-                
+        inkomendeHours = _timer.hours;  
 
         playerMoney += inkomendeScore;
         Debug.Log(playerMoney);

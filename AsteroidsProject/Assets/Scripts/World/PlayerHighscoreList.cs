@@ -21,7 +21,7 @@ public class PlayerHighscoreList : MonoBehaviour {
         inkomendeMinuten = PlayerPrefs.GetFloat("Minutes");
         inkomendeSeconds = PlayerPrefs.GetFloat("Seconds");
         inkomendeHours = PlayerPrefs.GetFloat("Hours");
-        //Set values
+        //get values
         hoogsteWave = PlayerPrefs.GetFloat("Highscore_Wave");
         hoogsteScore = PlayerPrefs.GetFloat("Highscore_Score");
         hoogsteHours = PlayerPrefs.GetFloat("Highscore_Hours");
