@@ -19,11 +19,13 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     float timer;
     float seconds;
-
-    public float GetDamage = 20;
+    ShopManager _shopmanager;
+    public int GetDamage;
 
     void Start()
     {
+        _shopmanager = GameObject.FindObjectOfType<ShopManager>();
+        GetDamage = _shopmanager.Bullet_Damage;
         _anim = gameObject.GetComponent<Animator>();
         _enemyAI = gameObject.GetComponent<EnemyAi>();
         _audiosource = GetComponent<AudioSource>();
@@ -37,6 +39,7 @@ public class EnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        
 	    if(CurrentHealth <= 0)
         {
             _anim.SetBool("isDeath", true);
@@ -50,8 +53,8 @@ public class EnemyHealth : MonoBehaviour {
             
         }
 
-        
-	}
+
+    }
 
     public void RecieveDamage(float damage)
     {

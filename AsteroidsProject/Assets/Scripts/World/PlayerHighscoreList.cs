@@ -6,54 +6,68 @@ public class PlayerHighscoreList : MonoBehaviour {
 
     public GameObject PlayerScoreEntryPrefab;
 
-    int lastChangeCounter;
+    float inkomendeWave,hoogsteWave;
+    float inkomendeScore, hoogsteScore;
+    float inkomendeMinuten, hoogsteMinuten;
+    float inkomendeHours, hoogsteHours;
+    float inkomendeSeconds, hoogsteSeconds;
 
-    HighScore _highscore;
 	// Use this for initialization
 	void Start () {
 
-        _highscore = GameObject.FindObjectOfType<HighScore>();
+        // Get Values
+        inkomendeWave = PlayerPrefs.GetFloat("Wave");
+        inkomendeScore = PlayerPrefs.GetFloat("Score");
+        inkomendeMinuten = PlayerPrefs.GetFloat("Minutes");
+        inkomendeSeconds = PlayerPrefs.GetFloat("Seconds");
+        inkomendeHours = PlayerPrefs.GetFloat("Hours");
+        //get values
+        hoogsteWave = PlayerPrefs.GetFloat("Highscore_Wave");
+        hoogsteScore = PlayerPrefs.GetFloat("Highscore_Score");
+        hoogsteHours = PlayerPrefs.GetFloat("Highscore_Hours");
+        hoogsteMinuten = PlayerPrefs.GetFloat("Highscore_Minutes");
+        hoogsteSeconds = PlayerPrefs.GetFloat("Highscore_Seconds");
 
-        lastChangeCounter = _highscore.GetChangeCounter();
+        if(inkomendeWave < hoogsteWave)
+        {
 
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+            
+            Debug.Log("Als inkomende wave kleiner is moet dit uitgevoerd worden");
+            
+        }
+        else
+        {
+            hoogsteWave = inkomendeWave;
+            hoogsteScore = inkomendeScore;
+            hoogsteHours = inkomendeHours;
+            hoogsteMinuten = inkomendeMinuten;
+            hoogsteSeconds = inkomendeSeconds;
+
+            Debug.Log("Er is nu een nieuwe highscore gezet!");
+        }
+        // save
+        PlayerPrefs.SetFloat("Highscore_Wave", hoogsteWave);
+        PlayerPrefs.SetFloat("Highscore_Score", hoogsteScore);
+        PlayerPrefs.SetFloat("Highscore_Hours", hoogsteHours);
+        PlayerPrefs.SetFloat("Highscore_Minutes", hoogsteWave);
+        PlayerPrefs.SetFloat("Highscore_Seconds", hoogsteSeconds);
+        PlayerPrefs.Save();
+        SetScore();
+    }
+
+    void SetScore()
     {
-       
-        /*
-        // enable dit dan bug.
-        if(_highscore.GetChangeCounter() == lastChangeCounter)
-        {
-            // geen change
-            return;
-        }
-        */
-        lastChangeCounter = _highscore.GetChangeCounter();
+        GameObject go = (GameObject)Instantiate(PlayerScoreEntryPrefab);
+        go.transform.SetParent(this.transform);
 
-        while(this.transform.childCount >0)
-        {
-            Transform c = this.transform.GetChild(0);
-            c.SetParent(null);
-            Destroy(c.gameObject);    
-        }
-        string[] names = _highscore.GetPlayerNames("wave");
+        //-------------------------------------------------------------
+
         
-        foreach (string name in names)
-        {
-            GameObject go = (GameObject)Instantiate(PlayerScoreEntryPrefab);
-            go.transform.SetParent(this.transform);
 
-            go.transform.Find("Points").GetComponent<Text>().text = name;
-            go.transform.Find("Wave").GetComponent<Text>().text = _highscore.GetScore(name, "wave").ToString();
-            go.transform.Find("Hours").GetComponent<Text>().text = _highscore.GetScore(name, "hours").ToString();
-            go.transform.Find("Minutes").GetComponent<Text>().text = _highscore.GetScore(name, "minutes").ToString();
-            go.transform.Find("Seconds").GetComponent<Text>().text = _highscore.GetScore(name, "seconds").ToString();
-
-
-        }
-
+        go.transform.Find("Points").GetComponent<Text>().text = hoogsteScore.ToString();
+        go.transform.Find("Wave").GetComponent<Text>().text = hoogsteWave.ToString();
+        go.transform.Find("Hours").GetComponent<Text>().text = hoogsteHours.ToString();
+        go.transform.Find("Minutes").GetComponent<Text>().text = hoogsteMinuten.ToString();
+        go.transform.Find("Seconds").GetComponent<Text>().text = hoogsteSeconds.ToString();
     }
 }

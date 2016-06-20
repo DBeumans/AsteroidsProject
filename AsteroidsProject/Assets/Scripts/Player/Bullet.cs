@@ -6,7 +6,9 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     float speed;
 
-    public float DestoryTimer = 0.40f;
+    public float DestoryTimer;
+
+    ShopManager _shopmanager;
 
     PlayerMovement player;
 
@@ -16,6 +18,8 @@ public class Bullet : MonoBehaviour {
 
     void Start()
     {
+        _shopmanager = GameObject.FindObjectOfType<ShopManager>();
+        DestoryTimer = _shopmanager.Bullet_Range;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         Destroy(gameObject, DestoryTimer);
     }

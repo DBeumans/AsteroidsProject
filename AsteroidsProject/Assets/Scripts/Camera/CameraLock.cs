@@ -10,8 +10,6 @@ public class CameraLock: MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _offset;
 
-
-
     [SerializeField]
     float shaketimer;
     [SerializeField]
@@ -19,6 +17,7 @@ public class CameraLock: MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         _offset = transform.position - target.position;
         target = GameObject.FindGameObjectWithTag("CamTarget").transform;
     }
@@ -44,6 +43,8 @@ public class CameraLock: MonoBehaviour
             Vector3 targetposition = target.position + _offset;
             // transform.position = target.position + _offset; 
             transform.position = Vector3.SmoothDamp(transform.position, targetposition, ref _velocity, smoothTime);
+
+
         }
         else
         {

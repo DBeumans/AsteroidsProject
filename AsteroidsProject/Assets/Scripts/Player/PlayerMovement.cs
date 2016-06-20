@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour {
     // SCRIPTS-------------------
     PlayerMovement _player;
     PlayerShooting _playershooting;
-    SpecialEnemyAI _enemy;
     // TRANSFORMS----------------
     [SerializeField]
     Transform Playertransform;
@@ -32,7 +31,9 @@ public class PlayerMovement : MonoBehaviour {
     bool grounded = false;
     bool canDoubleJump = false;
     bool _takeover = false;
+    bool StopAnimationPlaying;
 
+    public bool ChangeBackground;
 
     void Start()
     {
@@ -53,7 +54,6 @@ public class PlayerMovement : MonoBehaviour {
         _player = GetComponent<PlayerMovement>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
-        //_enemy = GameObject.FindGameObjectWithTag("SpecialEnemy").GetComponent<SpecialEnemyAI>();
     }
     void Update()
     {
@@ -103,16 +103,49 @@ public class PlayerMovement : MonoBehaviour {
 
     void CallAnimations()
     {
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("willow_stop_anim"))
+        {
+            StopAnimationPlaying = true;
+        }
+        else if(!StopAnimationPlaying)
+        {
+            anim.SetBool("StopRunning", false);
+            anim.SetBool("ToIdle", true);
+        }
         if (Input.GetKeyUp(KeyCode.D) || (Input.GetKeyUp(KeyCode.A)))
         {
-            anim.SetBool("IsRunning", false);
+            if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+            {
+
+            }
+            /*
+            ****
+
+            FALLING ANIMATION
+
+            ****
+            else if(!grounded)
+            {
+                anim.SetBool("IsRunning", false);
+                //anim.SetBool("IsFalling", true);
+            }
+            */
+            else
+            {
+                anim.SetBool("IsRunning", false);
+                anim.SetBool("StopRunning", true);
+                //anim.SetBool("IsFalling", false);
+            }
+            
         }
         if (Input.GetKey(KeyCode.D))
         {
+            anim.SetBool("StopRunning", false);
             anim.SetBool("IsRunning", true);
         }
         if (Input.GetKey(KeyCode.A))
         {
+            anim.SetBool("StopRunning", false);
             anim.SetBool("IsRunning", true);
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -152,6 +185,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
+                ChangeBackground = true;
                 teleportCounter++;
             }
             else
@@ -169,6 +203,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
+                ChangeBackground = false;
                 teleportCounter--;
             }
             else
@@ -197,16 +232,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-        // Ability
-        if (_takeover && Input.GetKey(KeyCode.E))
-        {
-            
-            _enemy.Controlable = true;
-            _player.enabled = false;
-            _playershooting.enabled = false;
-            _camtar.SetActive(false);
-            Destroy(gameObject, 0.40f);
-        }
+        
     }
 
     void raycasting()
