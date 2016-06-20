@@ -73,8 +73,7 @@ public class WaveManager : MonoBehaviour {
         WaveCap = false;
         waveCounter++;
         DefaultSpawnAbleEnemies += 2;
-        spawnAbleEnemies += DefaultSpawnAbleEnemies + DefaultSpawnAbleEnemies/2;
-        
+        spawnAbleEnemies += DefaultSpawnAbleEnemies + DefaultSpawnAbleEnemies/2;        
         
     }
     void CheckEnemiesInScene()

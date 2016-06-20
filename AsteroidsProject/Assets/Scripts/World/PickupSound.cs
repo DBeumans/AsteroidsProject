@@ -14,6 +14,7 @@ public class PickupSound : MonoBehaviour {
 	// Use this for initialization
 	public void playSound()
     {
+        _audiosource.volume = 1;
         _audiosource.PlayOneShot(pickupsound);
     }
 }

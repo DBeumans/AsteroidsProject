@@ -107,7 +107,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         if(other.gameObject.tag == "Potion_full")
         {
-            _pickupsound.playSound();
+           _pickupsound.playSound();
             CurrentHealth = 100;
             Debug.Log("potion_full_back");
             Destroy(other.gameObject);
