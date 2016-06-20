@@ -189,8 +189,9 @@ public class PlayerMovement : MonoBehaviour {
             if(teleportCounter == 1)
             {
                 _audiosource.PlayOneShot(_audioclip);
+                Time.timeScale = 0.2f;
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
-                
+                Time.timeScale = 1;
                 ChangeBackground = true;
                 teleportCounter++;
             }
@@ -208,7 +209,9 @@ public class PlayerMovement : MonoBehaviour {
             if (teleportCounter == 2)
             {
                 _audiosource.PlayOneShot(_audioclip);
+                Time.timeScale = 0.2f;
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
+                Time.timeScale = 1f;
                 ChangeBackground = false;
                 teleportCounter--;
             }
