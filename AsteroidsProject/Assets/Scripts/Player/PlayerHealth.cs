@@ -30,6 +30,8 @@ public class PlayerHealth : MonoBehaviour {
 
     PowerUps _powerups;
 
+    PickupSound 
+
     // Use this for initialization
     void Start ()
     {
@@ -95,12 +97,14 @@ public class PlayerHealth : MonoBehaviour {
             if (lives != 3)
             {
                 Debug.Log("potion_life_back");
+               
                 lives++;
                 Destroy(other.gameObject);
             }
         }
         if(other.gameObject.tag == "Potion_full")
         {
+           
             CurrentHealth = 100;
             Debug.Log("potion_full_back");
             Destroy(other.gameObject);
@@ -110,8 +114,10 @@ public class PlayerHealth : MonoBehaviour {
         {
             if(CurrentHealth >=80)
             {
+                
                 CurrentHealth = 100;
             }
+           
             CurrentHealth += 20;
             Debug.Log("potion_low_back");
             Destroy(other.gameObject);

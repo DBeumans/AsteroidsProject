@@ -20,6 +20,9 @@ public class WaveManager : MonoBehaviour {
 
     bool ProceedToNextWave;
 
+    AudioSource _audiosource;
+    [SerializeField]
+    AudioClip _waveclearedSound;
     
     public int waveCounter = 1;
 
@@ -27,7 +30,7 @@ public class WaveManager : MonoBehaviour {
     void Start () {
         ProceedNextLevelText.SetActive(false);
         spawnAbleEnemies += DefaultSpawnAbleEnemies;
-
+        _audiosource = gameObject.GetComponent<AudioSource>();
     }
 
     void CheckInput()
@@ -38,7 +41,8 @@ public class WaveManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.R))
             {
                 // wanneer pressed nieuw wave
-                
+                _audiosource.volume = 0.1f;
+                _audiosource.PlayOneShot(_waveclearedSound);
                 Reset();
                 ProceedToNextWave = false;
             }
