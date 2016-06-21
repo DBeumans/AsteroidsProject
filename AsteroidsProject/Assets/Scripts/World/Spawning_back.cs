@@ -15,6 +15,8 @@ public class Spawning_back : MonoBehaviour {
     [SerializeField]
     GameObject potion_low;
 
+    
+
     bool spawn_potion_life;
     bool spawn_potion_full;
     bool spawn_potion_low;
@@ -42,6 +44,7 @@ public class Spawning_back : MonoBehaviour {
         time_powerup_stop = 24 * seconds_powerup + 12f;
         potionSpawnLuck = Random.Range(0f, 1f);
         _levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<WaveManager>();
+        
     }
     void Update()
     {

@@ -10,8 +10,6 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     GameObject Infopanel;
     [SerializeField]
-    GameObject OptionsPanel;
-    [SerializeField]
     GameObject CreditsPanel;
 
     bool EnableLobby;
@@ -20,36 +18,12 @@ public class MenuManager : MonoBehaviour {
     {
        
             LobbyPanel.SetActive(true);
-            OptionsPanel.SetActive(false);
             CreditsPanel.SetActive(false);
             Infopanel.SetActive(false);
-        
- 
-            OptionsPanel.SetActive(false);
-            CreditsPanel.SetActive(false);
-            Infopanel.SetActive(false);
-            LobbyPanel.SetActive(false);
-        
-
     }
     public void StartGame(int scene)
     {
         SceneManager.LoadScene(scene);
-    }
-
-    public void OptionsShow(bool value)
-    {
-        if(value)
-        {
-            LobbyPanel.SetActive(false);
-            OptionsPanel.SetActive(true);
-        } 
-        if(!value)
-        {
-            LobbyPanel.SetActive(true);
-            OptionsPanel.SetActive(false);
-        }      
-
     }
     /*
     public void ToggleScreen(bool value)
@@ -85,7 +59,6 @@ public class MenuManager : MonoBehaviour {
         LobbyPanel.SetActive(true);
         Infopanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        OptionsPanel.SetActive(false);
         
     }
 
@@ -103,8 +76,6 @@ public class MenuManager : MonoBehaviour {
         Infopanel.SetActive(true);
         LobbyPanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        OptionsPanel.SetActive(false);
-
     }
 
     public void QuitGame()

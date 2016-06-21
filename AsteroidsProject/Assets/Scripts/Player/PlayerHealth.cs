@@ -30,6 +30,10 @@ public class PlayerHealth : MonoBehaviour {
 
     PowerUps _powerups;
 
+    PickupSound _pickupsound;
+
+    
+
     // Use this for initialization
     void Start ()
     {
@@ -40,6 +44,7 @@ public class PlayerHealth : MonoBehaviour {
         defaultTimeState = 24f * seconds + 12f;
         timer = defaultTimeState;
 
+        _pickupsound = GameObject.FindObjectOfType<PickupSound>();
         _powerups = GameObject.FindObjectOfType<PowerUps>();
 
     }
@@ -95,12 +100,14 @@ public class PlayerHealth : MonoBehaviour {
             if (lives != 3)
             {
                 Debug.Log("potion_life_back");
+                _pickupsound.playSound();
                 lives++;
                 Destroy(other.gameObject);
             }
         }
         if(other.gameObject.tag == "Potion_full")
         {
+           _pickupsound.playSound();
             CurrentHealth = 100;
             Debug.Log("potion_full_back");
             Destroy(other.gameObject);
@@ -110,8 +117,10 @@ public class PlayerHealth : MonoBehaviour {
         {
             if(CurrentHealth >=80)
             {
+                _pickupsound.playSound();
                 CurrentHealth = 100;
             }
+            _pickupsound.playSound();
             CurrentHealth += 20;
             Debug.Log("potion_low_back");
             Destroy(other.gameObject);

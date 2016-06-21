@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour {
     // COMPONENTS----------------
     Animator anim;
     Rigidbody2D rb2d;
+    AudioSource _audiosource;
+    [SerializeField]
+    AudioClip _audioclip;
     //BOOLEANS-------------------
     [SerializeField]
     bool grounded = false;
@@ -54,6 +57,8 @@ public class PlayerMovement : MonoBehaviour {
         _player = GetComponent<PlayerMovement>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        _audiosource = gameObject.GetComponent<AudioSource>();
+        _audiosource.volume = 0.1f;
     }
     void Update()
     {
@@ -183,8 +188,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             if(teleportCounter == 1)
             {
-                
+                _audiosource.PlayOneShot(_audioclip);
+                Time.timeScale = 0.2f;
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, 20f);
+                Time.timeScale = 1;
                 ChangeBackground = true;
                 teleportCounter++;
             }
@@ -201,8 +208,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (teleportCounter == 2)
             {
-                
+                _audiosource.PlayOneShot(_audioclip);
+                Time.timeScale = 0.2f;
                 Playertransform.transform.position += transform.position = new Vector3(0, 0, -20);
+                Time.timeScale = 1f;
                 ChangeBackground = false;
                 teleportCounter--;
             }

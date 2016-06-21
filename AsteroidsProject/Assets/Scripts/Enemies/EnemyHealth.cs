@@ -3,10 +3,10 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour {
 
-    [SerializeField]
-    float CurrentHealth = 100f;
-    [SerializeField]
-    float MaxHealth = 100f;
+    
+    public float CurrentHealth = 100f;
+
+    public float MaxHealth = 100f;
 
 
     Animator _anim;

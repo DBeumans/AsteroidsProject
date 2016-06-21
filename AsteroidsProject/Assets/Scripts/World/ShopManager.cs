@@ -104,7 +104,7 @@ public class ShopManager : MonoBehaviour {
            
             if (_ScoreHandler.Score >= UpgradePriceRange)
             {
-                Bullet_Range = Bullet_Range + 10f;
+                Bullet_Range = Bullet_Range + 0.2f;
                 Gun_Current_Range_Level++;
                 _ScoreHandler.Score -= UpgradePriceRange;
                 UpgradePriceRange += 100;
