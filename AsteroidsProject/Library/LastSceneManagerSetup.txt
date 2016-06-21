@@ -1,16 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Scenes/Danilo_Scene.unity
-=======
-- path: Assets/Scenes/Lobby_Scene.unity
->>>>>>> origin/master
-=======
-- path: Assets/Scenes/Lobby_Scene.unity
->>>>>>> origin/master
-=======
-- path: Assets/Scenes/Lobby_Scene.unity
->>>>>>> origin/master
+- path: Assets/Scenes/DylanScene.unity
   isLoaded: 1
   isActive: 1
